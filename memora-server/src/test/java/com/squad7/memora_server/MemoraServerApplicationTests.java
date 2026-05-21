@@ -1,0 +1,13 @@
+package com.squad7.memora_server;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MemoraServerApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

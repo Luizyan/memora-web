@@ -1,0 +1,15 @@
+# Forçar o GitHub a ler os componentes React corretamente
+*.js linguist-language=JavaScript
+*.jsx linguist-language=JavaScript
+*.css linguist-language=CSS
+
+# Tratar os arquivos de configuração do Vite/ESLint como gerados ou documentação
+vite.config.js linguist-documentation=true
+eslint.config.js linguist-documentation=true
+
+# Ignorar o arquivo de trava de dependências que costuma quebrar os PRs
+package-lock.json linguist-generated=true
+
+# Garantir que se as pastas de build ou node_modules subirem sem querer, elas fiquem ocultas
+dist/* linguist-generated=true
+node_modules/* linguist-generated=true

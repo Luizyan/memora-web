@@ -1,0 +1,175 @@
+/* Container Geral */
+.solucoes-page {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- HERO SECTION --- */
+.solucoes-hero {
+  display: flex;
+  height: 80vh;
+  min-height: 550px;
+  /* Gradiente escuro que faz a transição para a imagem à direita */
+  background: linear-gradient(90deg, #163640 45%, rgba(22, 54, 64, 0.8) 65%, transparent 100%);
+  position: relative;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  width: 50%;
+  padding-left: 10%;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-text-wrapper h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* Linha verde abaixo do título */
+.hero-text-wrapper h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #008a8a;
+  margin-top: 10px;
+}
+
+.hero-text-wrapper p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin-top: 25px;
+  font-weight: 300;
+  color: #e0e0e0;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- GRID SECTION --- */
+.solucoes-grid-section {
+  background-color: #f8f9fa; /* Fundo cinza claro conforme Captura de Tela 2026-05-12 às 21.46.38.png */
+  padding: 80px 10%;
+}
+
+.solucoes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.solucao-card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.solucao-card:hover {
+  transform: translateY(-5px);
+}
+
+.solucao-card-content {
+  padding: 35px 25px;
+  flex-grow: 1;
+}
+
+/* Borda lateral verde no título do card */
+.solucao-card-content h3 {
+  font-size: 1.35rem;
+  color: #1a1a1a;
+  border-left: 5px solid #008a8a;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.solucao-card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.solucao-card-footer {
+  border-top: 1px solid #eee;
+  padding: 15px;
+  text-align: center;
+}
+
+.btn-ler-mais {
+  color: #008a8a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-ler-mais:hover {
+  color: #163640;
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+  .solucoes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .solucoes-hero {
+    flex-direction: column;
+    height: auto;
+    background: #163640;
+    text-align: center;
+  }
+  
+  .hero-content {
+    width: 100%;
+    padding: 60px 20px;
+  }
+
+  .hero-text-wrapper h1::after {
+    margin: 10px auto;
+  }
+
+  .hero-image-overlay {
+    position: relative;
+    width: 100%;
+    height: 350px;
+  }
+
+  .solucoes-container {
+    grid-template-columns: 1fr;
+  }
+}
+.hero-image-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ajusta para centralizar a pessoa horizontalmente e focar no rosto verticalmente */
+  object-position: center 10%; 
+}

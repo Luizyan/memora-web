@@ -1,0 +1,127 @@
+.clients-hero {
+  position: relative;
+  background: linear-gradient(135deg, #0d4a4a 0%, #0a6b6b 50%, #083d3d 100%);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.clients-hero__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  top: calc(var(--i) * 5.5% + 5%);
+  left: calc(var(--i) * 5.2% + 3%);
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: calc(3s + var(--i) * 0.4s);
+}
+
+@keyframes float {
+  from { transform: translateY(0) scale(1); opacity: 0.15; }
+  to   { transform: translateY(-18px) scale(1.6); opacity: 0.45; }
+}
+
+.clients-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 80px;
+}
+
+.clients-hero__title {
+  font-family: 'Georgia', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+}
+
+.clients-hero__title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #4dd9d9;
+  margin-top: 16px;
+}
+
+.clients-about {
+  background: #f7f7f7;
+  padding: 60px 0;
+}
+
+.clients-about__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.clients-about__inner p {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.clients-about__inner strong {
+  font-weight: 700;
+  color: #111;
+}
+
+.clients-logos {
+  background: #fff;
+  padding: 60px 40px 80px;
+}
+
+.clients-logos__grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.clients-logos__card {
+  border-radius: 10px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 110px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clients-logos__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+}
+
+.clients-logos__label {
+  font-family: 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.clients-logos__sub {
+  font-family: sans-serif;
+  font-size: 0.6rem;
+  text-align: center;
+  opacity: 0.85;
+  line-height: 1.3;
+}

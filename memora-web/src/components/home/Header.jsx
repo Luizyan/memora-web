@@ -21,10 +21,11 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-const MailIcon = () => (
-  <svg width={18} height={18} viewBox="0 0 24 24" fill="#252222">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-    <polyline points="22,6 12,13 2,6" stroke="#252222" strokeWidth="1.5" fill="none"/>
+const InstagramIcon = () => (
+  <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#252222" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
   </svg>
 );
 
@@ -90,21 +91,24 @@ export function Header() {
     <header className="header">
       <div className="top-bar">
         <div className="social-icons-wrapper" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer" style={iconStyle('#fff')}>
-            <YoutubeIcon />
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noreferrer" style={iconStyle('#fff')}>
+          
+          {/* Links oficiais da Memora configurados */}
+          <a href="https://www.facebook.com/MEMORAVEL" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
             <FacebookIcon />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" style={iconStyle('#fff')}>
+          <a href="https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+            <YoutubeIcon />
+          </a>
+          <a href="https://www.linkedin.com/company/memoraprocessos" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
             <LinkedInIcon />
           </a>
-          <a href="mailto:contato@memora.com.br" style={iconStyle('#fff')}>
-            <MailIcon />
+          <a href="https://www.instagram.com/memoraprocessosinovadores/" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+            <InstagramIcon />
           </a>
-          <a href="tel:6139630030" style={iconStyle('#fff')}>
+          <a href="https://wa.me/556139630030" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
             <PhoneIcon />
           </a>
+          
         </div>
         <button className="admin-btn">Área do Administrador</button>
       </div>

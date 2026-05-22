@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 const FacebookIcon = () => (
   <svg width={16} height={16} viewBox="0 0 24 24" fill="#fff">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -15,6 +17,14 @@ const LinkedInIcon = () => (
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
     <rect x="2" y="9" width="4" height="12"/>
     <circle cx="4" cy="4" r="2"/>
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
   </svg>
 );
 
@@ -38,13 +48,19 @@ const PinIcon = () => (
   </svg>
 );
 
-const socialIcon = (bg, Icon) => (
-  <span style={{
-    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-    width: 30, height: 30, borderRadius: '50%', backgroundColor: bg, cursor: 'pointer'
-  }}>
+const socialIcon = (bg, Icon, url) => (
+  <a 
+    href={url} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: 30, height: 30, borderRadius: '50%', backgroundColor: bg,
+      textDecoration: 'none'
+    }}
+  >
     <Icon />
-  </span>
+  </a>
 );
 
 const ContactItem = ({ icon, children }) => (
@@ -55,11 +71,19 @@ const ContactItem = ({ icon, children }) => (
 );
 
 export function Footer() {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contatos');
+  };
+
   return (
     <footer className="footer-container">
       <div className="cta-footer">
         <h2>Quer conhecer nossas soluções ou ficou com dúvida em algo?</h2>
-        <button className="falar-conosco-btn">Falar conosco →</button>
+        <button className="falar-conosco-btn" onClick={handleContactClick}>
+          Falar conosco →
+        </button>
       </div>
 
       <div style={{
@@ -82,12 +106,14 @@ export function Footer() {
           <ContactItem icon={<MailIcon />}>
             contato@memora.com.br
           </ContactItem>
+          
+          {/* Redes sociais atualizadas com os seus links */}
           <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-            {socialIcon('#1877F2', FacebookIcon)}
-            {socialIcon('#FF0000', YoutubeIcon)}
-            {socialIcon('#0A66C2', LinkedInIcon)}
-            {socialIcon('#EA4335', MailIcon)}
-            {socialIcon('#25D366', PhoneIcon)}
+            {socialIcon('#1877F2', FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
+            {socialIcon('#FF0000', YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}
+            {socialIcon('#0A66C2', LinkedInIcon, 'https://www.linkedin.com/company/memoraprocessos')}
+            {socialIcon('#E1306C', InstagramIcon, 'https://www.instagram.com/memoraprocessosinovadores/')}
+            {socialIcon('#25D366', PhoneIcon, 'https://wa.me/556139630030')}
           </div>
         </div>
 

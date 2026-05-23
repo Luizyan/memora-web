@@ -10,7 +10,6 @@ export function Stats() {
     <section className="stats">
       <div className="stats-info">
         <h2>Nossos resultados</h2>
-        <button>Entrar em contato</button>
       </div>
       <div className="stats-grid">
         {resultados.map((item, index) => (

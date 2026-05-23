@@ -62,7 +62,6 @@ export function Jobs() {
     <section style={{ backgroundColor: '#b2d8d8', padding: '60px 64px', position: 'relative' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
         <h2 style={{ fontSize: 36, fontWeight: 700, color: '#1a5f5f', margin: 0 }}>Vagas</h2>
-        <a href="#" style={{ color: '#1a5f5f', fontWeight: 600, textDecoration: 'underline', fontSize: 16 }}>Ver mais</a>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -88,9 +87,6 @@ export function Jobs() {
                 <h3 style={{ color: '#fff', fontSize: 18, fontWeight: 700, margin: 0, lineHeight: 1.4 }}>
                   {job.title}
                 </h3>
-                <a href="#" style={{ color: '#d0f0f0', fontSize: 14, textDecoration: 'none', marginTop: 8 }}>
-                  Leia mais →
-                </a>
               </div>
             </div>
           ))}

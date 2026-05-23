@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom'; // Importe o Link
 import heroImg from '../../assets/genteComemorando.jpg';
 
 export function Hero() {
   return (
-    // OPÇÃO 1: Adicionar display flex e gap direto no pai (Recomendado)
     <section className="hero" style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
-      
-      {/* OPÇÃO 2: Adicionar uma margem direita na div do texto */}
-      <div className="hero-content" style={{ marginRight: '3rem' }}>
+      <div className="hero-content">
         <h1>Transformamos processos em <strong>resultados memoráveis</strong></h1>
         <p>Conectando tecnologia, metodologia e pessoas para transformar governos e organizações.</p>
-        <button className="cta-btn">Veja mais</button>
+        
+        {/* Transformado em Link apontando para a nova rota */}
+        <Link to="/vejamais" className="cta-btn" style={{ textDecoration: 'none' }}>
+          Veja mais
+        </Link>
       </div>
       
       <div className="hero-image">

@@ -72,10 +72,19 @@ export function Jobs() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, flex: 1 }}>
           {visibleJobs.map((job) => (
-            <div key={job.id} style={{
-              backgroundColor: '#2a9090', borderRadius: 12, overflow: 'hidden',
-              display: 'flex', flexDirection: 'column',
-            }}>
+            <a 
+              key={job.id} 
+              href={`#/vaga/${job.id}`} 
+              style={{
+                backgroundColor: '#2a9090', 
+                borderRadius: 12, 
+                overflow: 'hidden',
+                display: 'flex', 
+                flexDirection: 'column',
+                textDecoration: 'none', 
+                cursor: 'pointer'       
+              }}
+            >
               <img src={job.image} alt={job.title} style={{ width: '100%', height: 220, objectFit: 'cover' }} />
               <div style={{ padding: '20px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#d0f0f0', fontSize: 13 }}>
@@ -88,7 +97,7 @@ export function Jobs() {
                   {job.title}
                 </h3>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

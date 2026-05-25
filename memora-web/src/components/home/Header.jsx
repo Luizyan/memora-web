@@ -88,102 +88,107 @@ export function Header() {
   };
 
   return (
-    <header className="header">
-      <div className="top-bar">
-        <div className="social-icons-wrapper" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          
-          {/* Links oficiais da Memora configurados */}
-          <a href="https://www.facebook.com/MEMORAVEL" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
-            <FacebookIcon />
-          </a>
-          <a href="https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
-            <YoutubeIcon />
-          </a>
-          <a href="https://www.linkedin.com/company/memoraprocessos" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
-            <LinkedInIcon />
-          </a>
-          <a href="https://www.instagram.com/memoraprocessosinovadores/" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
-            <InstagramIcon />
-          </a>
-          <a href="https://wa.me/556139630030" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
-            <PhoneIcon />
-          </a>
-          
+    <header className="header-wrapper">
+      
+      {/* Container externo para o fundo verde estender 100% */}
+      <div className="top-bar-bg">
+        <div className="top-bar">
+          <div className="social-icons-wrapper" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <a href="https://www.facebook.com/MEMORAVEL" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+              <FacebookIcon />
+            </a>
+            <a href="https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+              <YoutubeIcon />
+            </a>
+            <a href="https://www.linkedin.com/company/memoraprocessos" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+              <LinkedInIcon />
+            </a>
+            <a href="https://www.instagram.com/memoraprocessosinovadores/" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+              <InstagramIcon />
+            </a>
+            <a href="https://wa.me/556139630030" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
+              <PhoneIcon />
+            </a>
+          </div>
+          <button className="admin-btn">Área do Administrator</button>
         </div>
-        <button className="admin-btn">Área do Administrador</button>
       </div>
 
-      <nav className="navbar">
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="logo">MEMORA</div>
-        </Link>
+      {/* Container externo para o fundo branco estender 100% */}
+      <div className="navbar-bg">
+        <nav className="navbar">
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="logo">MEMORA</div>
+          </Link>
 
-        <ul className="nav-links">
-          {navItems.map(({ label, to }) => {
-            const isActive =
-              to === '/'
-                ? location.pathname === '/'
-                : location.pathname.startsWith(to);
+          <ul className="nav-links">
+            {navItems.map(({ label, to }) => {
+              const isActive =
+                to === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(to);
 
-            return (
-              <li key={to}>
-                <Link
-                  to={to}
-                  style={{
-                    textDecoration: 'none',
-                    color: isActive ? '#000' : 'inherit',
-                    fontWeight: isActive ? '700' : 'inherit',
-                    borderBottom: isActive ? '2px solid currentColor' : '2px solid transparent',
-                    paddingBottom: '2px',
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+              return (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    style={{
+                      textDecoration: 'none',
+                      color: isActive ? '#000' : 'inherit',
+                      fontWeight: isActive ? '700' : 'inherit',
+                      borderBottom: isActive ? '2px solid currentColor' : '2px solid transparent',
+                      paddingBottom: '2px',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
-        <div
-          onClick={!searchOpen ? handleSearchClick : undefined}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '6px 14px',
-            borderRadius: '20px',
-            border: '1px solid',
-            borderColor: searchOpen ? '#555' : '#ccc',
-            cursor: searchOpen ? 'text' : 'pointer',
-            transition: 'all 0.3s ease',
-            width: searchOpen ? '220px' : '120px',
-            backgroundColor: searchOpen ? '#fff' : 'transparent',
-            boxSizing: 'border-box',
-          }}
-        >
-          <SearchIcon />
-          {searchOpen ? (
-            <input
-              ref={inputRef}
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onBlur={handleBlur}
-              onKeyDown={handleKeyDown}
-              placeholder="Pesquisar..."
-              style={{
-                border: 'none',
-                outline: 'none',
-                width: '100%',
-                fontSize: '14px',
-                backgroundColor: 'transparent',
-              }}
-            />
-          ) : (
-            <span style={{ fontSize: '14px', color: '#555' }}>Pesquisar</span>
-          )}
-        </div>
-      </nav>
+          <div
+            onClick={!searchOpen ? handleSearchClick : undefined}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              border: '1px solid',
+              borderColor: searchOpen ? '#555' : '#ccc',
+              cursor: searchOpen ? 'text' : 'pointer',
+              transition: 'all 0.3s ease',
+              width: searchOpen ? '220px' : '120px',
+              backgroundColor: searchOpen ? '#fff' : 'transparent',
+              boxSizing: 'border-box',
+            }}
+          >
+            <SearchIcon />
+            {searchOpen ? (
+              <input
+                ref={inputRef}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
+                placeholder="Pesquisar..."
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  width: '100%',
+                  fontSize: '14px',
+                  backgroundColor: 'transparent',
+                }}
+              />
+            ) : (
+              <span style={{ fontSize: '14px', color: '#555' }}>Pesquisar</span>
+            )}
+          </div>
+        </nav>
+      </div>
+
     </header>
   );
 }

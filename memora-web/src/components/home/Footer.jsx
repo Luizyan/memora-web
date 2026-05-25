@@ -82,7 +82,7 @@ export function Footer() {
       <div className="cta-footer">
         <h2>Quer conhecer nossas soluções ou ficou com dúvida em algo?</h2>
         <button className="falar-conosco-btn" onClick={handleContactClick}>
-          Falar conosco →
+          Falar conosco &rarr;
         </button>
       </div>
 
@@ -90,13 +90,16 @@ export function Footer() {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
         gap: '40px',
-        padding: '48px 64px',
+        paddingTop: '120px',
+        paddingRight: '64px',
+        paddingBottom: '48px',
+        paddingLeft: '64px',
         borderBottom: '1px solid #333'
       }}>
 
         {/* Coluna 1 — Marca */}
         <div>
-          <div className="logo-white" style={{ fontSize: 24, fontWeight: 700, marginBottom: 20 }}>memora</div>
+          <div style={{ color: '#fff', fontSize: 16, marginBottom: 20, fontWeight: 600 }}>memora</div>
           <ContactItem icon={<PinIcon />}>
             SIG Quadra 04, Lote 625 Parte A<br/>Brasília, Distrito Federal
           </ContactItem>
@@ -107,7 +110,7 @@ export function Footer() {
             contato@memora.com.br
           </ContactItem>
           
-          {/* Redes sociais atualizadas com os seus links */}
+          {/* Redes sociais */}
           <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
             {socialIcon('#1877F2', FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
             {socialIcon('#FF0000', YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}

@@ -53,10 +53,9 @@ function Home() {
         <Hero />
         <Stats />
         <Clients />
-        <Jobs />
       </div>
       
-      {/* O Footer agora está isolado na raiz, livre para ocupar 100% da largura da tela */}
+      <Jobs />
       <Footer /> 
     </>
   );

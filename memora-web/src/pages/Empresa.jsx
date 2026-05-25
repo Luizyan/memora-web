@@ -3,7 +3,7 @@ import "./Empresa.css";
 import { Footer } from "../components/home/Footer";
 import { Clients } from "../components/home/Clients";
 
-// Imagem do Unsplash
+
 const historiaHero =
   "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80";
 
@@ -321,7 +321,7 @@ export default function Empresa() {
         }
       />
 
-      {/* SEÇÃO DE VALORES */}
+      
       <ValuesSection />
 
       <Clients />

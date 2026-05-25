@@ -1,7 +1,7 @@
 import React from "react";
 import "./Solucoes.css";
 import { Footer } from "../components/home/Footer";
-
+import { Link } from "react-router-dom"; 
 const cardsSolucoes = [
   {
     title: "Servidores e Storage",
@@ -29,7 +29,7 @@ const cardsSolucoes = [
   },
   {
     title: "Desenvolvimento de Software",
-    text: "Desenvolvimento de Software Pode parecer simples, mas o desenvolvimento de softwares deve levar em conta todos os requisitos para que o produto atinja os resultados esperados, por isso é preciso...",
+    text: "Desenvolvimento de Software Pode parecer simples, mas o desenvolvimento de softwares deve levar em conta todos os requisitos para que o product atinja os resultados esperados, por isso é preciso...",
   },
   {
     title: "Service Management",
@@ -37,14 +37,14 @@ const cardsSolucoes = [
   },
   {
     title: "Gestão das Aquisições Públicas",
-    text: "Com a convicção de que o aprimoramento da gestão é um esforço contínuo, a Memora oferta a Solução VITRO, que suporta e monitora os processos integrantes do ciclo completo de...",
+    text: "Com a convicção de que o aprimoramento da gestão é um effort contínuo, a Memora oferta a Solução VITRO, que suporta e monitora os processos integrantes do ciclo completo de...",
   }
 ];
 
 export default function Solucoes() {
   return (
     <div className="solucoes-page">
-      {/* Hero Section - Baseado na Captura de Tela 2026-05-12 às 21.41.22.png */}
+      {/* Hero Section */}
       <section className="solucoes-hero">
         <div className="hero-content">
           <div className="hero-text-wrapper">
@@ -68,7 +68,7 @@ export default function Solucoes() {
         </div>
       </section>
 
-      {/* Grid de Cards - Baseado na Captura de Tela 2026-05-12 às 21.46.38.png */}
+      {/* Grid de Cards */}
       <section className="solucoes-grid-section">
         <div className="solucoes-container">
           {cardsSolucoes.map((item, index) => (
@@ -78,7 +78,9 @@ export default function Solucoes() {
                 <p>{item.text}</p>
               </div>
               <div className="solucao-card-footer">
-                <a href="#" className="btn-ler-mais">LER MAIS</a>
+                <Link to={`/solucao/${index + 1}`} className="btn-ler-mais">
+                  LER MAIS
+                </Link>
               </div>
             </div>
           ))}

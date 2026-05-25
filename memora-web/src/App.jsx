@@ -15,12 +15,24 @@ import Empresa    from './pages/Empresa';
 import Solucoes   from './pages/Solucoes';
 import Contatos   from './pages/Contatos';
 
-// Importações com os caminhos corretos baseados na sua estrutura de pastas
+// IMPORTAÇÕES DAS VAGAS (PagesVagas)
 import Vaga1 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga1';
 import Vaga2 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga2';
 import Vaga3 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga3';
-import Vaga4 from './PaginasRedirecionadas/HomeR/PagesVagas/vaga4'; // Caminho com 'v' minúsculo conforme seu explorador
+import Vaga4 from './PaginasRedirecionadas/HomeR/PagesVagas/vaga4'; 
 import Vaga5 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga5';
+
+
+// IMPORTAÇÕES DAS SOLUÇÕES (PagesSolucoes)
+import LerMais1 from "./PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais1";
+import LerMais2 from "./PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais2";
+import LerMais3 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais3';
+import LerMais4 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais4';
+import LerMais5 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais5';
+import LerMais6 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais6';
+import LerMais7 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais7';
+import LerMais8 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais8';
+import LerMais9 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais9';
 
 import './App.css';
 
@@ -41,6 +53,7 @@ function App() {
     <HashRouter>
       <Header /> 
       <Routes>
+        {/* Rotas Principais */}
         <Route path="/"         element={<Home />} />
         <Route path="/vejamais" element={<VejaMais />}  /> 
         <Route path="/clientes" element={<ClientsNav />} />
@@ -49,13 +62,26 @@ function App() {
         <Route path="/solucoes" element={<Solucoes />} />
         <Route path="/contatos" element={<Contatos />} />
         
-        {/* Rotas das páginas de vagas */}
+        {/*ROTAS DAS VAGAS*/}
         <Route path="/vaga/1" element={<Vaga1 />} />
         <Route path="/vaga/2" element={<Vaga2 />} />
         <Route path="/vaga/3" element={<Vaga3 />} />
         <Route path="/vaga/4" element={<Vaga4 />} />
         <Route path="/vaga/5" element={<Vaga5 />} />
 
+        {/* ROTAS DAS SOLUÇÕES (LER MAIS)*/}
+        <Route path="/solucao/1" element={<LerMais1 />} />
+        
+        <Route path="/solucao/2" element={<LerMais2 />} /> 
+        <Route path="/solucao/3" element={<LerMais3 />} />
+        <Route path="/solucao/4" element={<LerMais4 />} />
+        <Route path="/solucao/5" element={<LerMais5 />} />
+        <Route path="/solucao/6" element={<LerMais6 />} />
+        <Route path="/solucao/7" element={<LerMais7 />} />
+        <Route path="/solucao/8" element={<LerMais8 />} />
+        <Route path="/solucao/9" element={<LerMais9 />} />
+
+        {/* Rota Fallback para erro 404 */}
         <Route path="*"         element={<h1>404 – Página não encontrada</h1>} />
       </Routes>
     </HashRouter>

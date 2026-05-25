@@ -63,7 +63,6 @@
   color: var(--text);
 }
 
-/* Título para layout full-width (à esquerda) */
 .empresa-history-title-left {
   margin-bottom: clamp(24px, 3vw, 32px);
   max-width: none;
@@ -100,7 +99,7 @@
   margin-bottom: 0;
 }
 
-/* Texto em largura total */
+
 .empresa-full-width-text {
   max-width: 1150px;
   width: 100%;
@@ -111,7 +110,7 @@
     grid-template-columns: 1fr;
   }
 }
-/* Seção de Valores */
+
 .empresa-values-section {
   padding: clamp(48px, 8vw, 96px) 0;
 }

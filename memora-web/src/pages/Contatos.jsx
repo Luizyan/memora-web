@@ -4,13 +4,13 @@ import { useState } from 'react';
 import './Contatos.css';
 
 export default function Contatos() {
-  // Estados para armazenar os dados do formulário
+
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [enviando, setEnviando] = useState(false);
 
-  // Função para enviar o formulário
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEnviando(true);

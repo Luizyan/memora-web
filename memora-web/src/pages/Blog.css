@@ -1,28 +1,56 @@
+/* CONTAINER PAI - Ocupa a tela toda e permite o Footer Full Width */
 .blog-page {
-  background-color: #f5f7f9;
-  padding: 60px 20px;
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.blog-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f8fbfb;
+  box-sizing: border-box;
+}
+
+/* MIOLO DOS CARDS - Aqui sim controlamos o limite de 1200px e centralizamos */
+.blog-grid {
+  flex: 1; /* Empurra o footer sempre para o final da página */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; /* Centraliza a grid na tela */
+  padding: 120px 20px 60px 20px; /* Padding superior alto para o Header fixo */
+  box-sizing: border-box;
+}
+
+/* CARD INDIVIDUAL */
+.blog-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* LINKS COMPORTAMENTO */
+.card-image-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
 }
 
 .card-image-container {
   position: relative;
-  height: 240px;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
 }
 
 .card-img {
@@ -31,92 +59,74 @@
   object-fit: cover;
 }
 
-/* Ajuste das Tags para sobrepor a borda da imagem */
+/* TAGS */
 .card-tags {
   position: absolute;
-  bottom: -12px;
-  left: 20px;
+  bottom: 12px;
+  left: 12px;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
 .tag {
-  background-color: #008a8a;
-  color: white;
-  padding: 4px 10px;
+  background-color: #2a9090;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
-  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* CORPO DO CARD */
 .card-body {
-  padding: 30px 20px 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
+/* TEXTOS E LIMITADORES DE LINHA */
 .card-title {
-  font-size: 1.2rem;
-  color: #1a365d;
-  margin-bottom: 15px;
-  line-height: 1.3;
-  font-weight: 800;
+  color: #0c3c3c;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-excerpt {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 25px;
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* METADADOS DO CARD */
 .card-footer {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0f5f5;
   display: flex;
-  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  color: #888888;
+  font-size: 13px;
 }
 
 .meta-item {
-  font-size: 0.85rem;
-  color: #008a8a;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-.card-image-container {
-  position: relative;
-  height: 240px;
-  background-color: #eee; /* Cor de fundo caso a imagem falhe */
-  overflow: visible; /* Importante para as tags aparecerem por cima */
-}
-
-.card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block; /* Remove espaços vazios abaixo da imagem */
-}
-.blog-grid {
-  display: grid;
-  /* Cria 3 colunas em telas grandes, 2 em tablets e 1 em celulares */
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 1024px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .blog-grid {
-    grid-template-columns: 1fr;
-  }
+  gap: 4px;
 }

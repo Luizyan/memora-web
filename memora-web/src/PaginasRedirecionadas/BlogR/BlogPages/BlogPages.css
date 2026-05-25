@@ -1,0 +1,130 @@
+/* CONTAINER PRINCIPAL DA PÁGINA */
+.blog-internal-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 130px; /* Espaço para o Header Fixo */
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1d1d1f; /* Tom de cinza escuro premium da Apple */
+  box-sizing: border-box;
+}
+
+/* ÁREA DO CONTEÚDO (Centralizada e com largura ideal de leitura) */
+.blog-internal-page .post-content-area {
+  flex: 1;
+  width: 100%;
+  max-width: 840px; /* Largura elegante para o artigo */
+  margin: 0 auto;
+  padding: 0 24px 80px 24px;
+  box-sizing: border-box;
+}
+
+/* LINK DE VOLTAR */
+.blog-internal-page .back-link {
+  color: #0066cc;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+
+.blog-internal-page .back-link:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* HEADER DO POST */
+.blog-internal-page .post-header {
+  margin-bottom: 32px;
+}
+
+/* TAGS DE CATEGORIA */
+.blog-internal-page .post-tags-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.blog-internal-page .single-tag {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* TÍTULO PRINCIPAL */
+.blog-internal-page .post-title {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0c3c3c; /* Mantendo o tom elegante de azul/verde escuro */
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+/* METADADOS (DATA E COMENTÁRIOS) */
+.blog-internal-page .post-meta {
+  color: #86868b;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+/* IMAGEM DE DESTAQUE SUPER APRESENTÁVEL */
+.blog-internal-page .post-image {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 16px; /* Bordas arredondadas suaves */
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* Sombra leve e elegante */
+}
+
+/* CORPO DO TEXTO (FOCO EM LEITURA CONFORTÁVEL) */
+.blog-internal-page .post-body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333336;
+}
+
+.blog-internal-page .post-body p {
+  margin-bottom: 28px;
+  text-align: justify;
+}
+
+.blog-internal-page .post-body strong {
+  color: #1d1d1f;
+  font-weight: 600;
+}
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 768px) {
+  .blog-internal-page {
+    padding-top: 100px;
+  }
+  
+  .blog-internal-page .post-title {
+    font-size: 28px;
+  }
+  
+  .blog-internal-page .post-body {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  
+  .blog-internal-page .post-image {
+    max-height: 300px;
+    border-radius: 12px;
+  }
+}

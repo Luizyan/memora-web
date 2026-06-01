@@ -2,6 +2,7 @@ import React from "react";
 import "./Solucoes.css";
 import { Footer } from "../components/home/Footer";
 import { Link } from "react-router-dom"; 
+
 const cardsSolucoes = [
   {
     title: "Servidores e Storage",

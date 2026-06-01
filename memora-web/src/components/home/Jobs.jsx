@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './Jobs.css'; // Importando o novo arquivo CSS
 
 const jobs = [
   {
@@ -43,76 +44,96 @@ const CalendarIcon = () => (
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
     <line x1="16" y1="2" x2="16" y2="6"/>
     <line x1="8" y1="2" x2="8" y2="6"/>
-    <line x1="3" y1="10" x2="21" y2="10"/>
+    <line x1="3" y1="10" x2="21" height="10" y2="10"/>
   </svg>
 );
 
 export function Jobs() {
   const [current, setCurrent] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+  
   const total = jobs.length;
-  const visible = 3;
-  const maxIndex = total - visible;
+
+  // Monitora a largura da janela para adaptar dinamicamente o salto do carrossel
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 600) {
+        setVisibleCount(1);  // Celular: 1 vaga por vez
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2);  // Tablet: 2 vagas por vez
+      } else {
+        setVisibleCount(3);  // Desktop: 3 vagas por vez
+      }
+    }
+
+    handleResize(); // Executa ao montar o componente
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(total - visibleCount, 0);
+
+  // Garante que o índice atual se ajuste caso a tela mude de tamanho bruscamente
+  useEffect(() => {
+    if (current > maxIndex) {
+      setCurrent(maxIndex);
+    }
+  }, [visibleCount, maxIndex, current]);
 
   const prev = () => setCurrent((c) => Math.max(c - 1, 0));
   const next = () => setCurrent((c) => Math.min(c + 1, maxIndex));
 
-  const visibleJobs = jobs.slice(current, current + visible);
+  const visibleJobs = jobs.slice(current, current + visibleCount);
 
   return (
-    <section style={{ backgroundColor: '#b2d8d8', padding: '60px 64px', position: 'relative' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-        <h2 style={{ fontSize: 36, fontWeight: 700, color: '#1a5f5f', margin: 0 }}>Vagas</h2>
-      </div>
+    <section className="jobs-section">
+      <h2 className="jobs-title">Vagas</h2>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <button onClick={prev} disabled={current === 0} style={{
-          background: 'none', border: 'none', cursor: current === 0 ? 'not-allowed' : 'pointer',
-          color: current === 0 ? '#aaa' : '#1a5f5f', fontSize: 28, flexShrink: 0, padding: '0 8px'
-        }}>←</button>
+      <div className="jobs-carousel-container">
+        <button 
+          onClick={prev} 
+          disabled={current === 0} 
+          className="arrow-btn"
+          aria-label="Vagas anteriores"
+        >
+          ←
+        </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, flex: 1 }}>
+        <div className="jobs-grid">
           {visibleJobs.map((job) => (
-            <a 
-              key={job.id} 
-              href={`#/vaga/${job.id}`} 
-              style={{
-                backgroundColor: '#2a9090', 
-                borderRadius: 12, 
-                overflow: 'hidden',
-                display: 'flex', 
-                flexDirection: 'column',
-                textDecoration: 'none', 
-                cursor: 'pointer'       
-              }}
-            >
-              <img src={job.image} alt={job.title} style={{ width: '100%', height: 220, objectFit: 'cover' }} />
-              <div style={{ padding: '20px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#d0f0f0', fontSize: 13 }}>
+            <a key={job.id} href={`#/vaga/${job.id}`} className="job-card">
+              <img src={job.image} alt={job.title} />
+              <div className="job-card-info">
+                <div className="job-card-meta">
                   <CalendarIcon />
                   <span>{job.date}</span>
                   <span>•</span>
                   <span style={{ fontWeight: 600 }}>{job.category}</span>
                 </div>
-                <h3 style={{ color: '#fff', fontSize: 18, fontWeight: 700, margin: 0, lineHeight: 1.4 }}>
-                  {job.title}
-                </h3>
+                <h3 className="job-card-title">{job.title}</h3>
               </div>
             </a>
           ))}
         </div>
 
-        <button onClick={next} disabled={current === maxIndex} style={{
-          background: 'none', border: 'none', cursor: current === maxIndex ? 'not-allowed' : 'pointer',
-          color: current === maxIndex ? '#aaa' : '#1a5f5f', fontSize: 28, flexShrink: 0, padding: '0 8px'
-        }}>→</button>
+        <button 
+          onClick={next} 
+          disabled={current === maxIndex} 
+          className="arrow-btn"
+          aria-label="Próximas vagas"
+        >
+          →
+        </button>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 32 }}>
+      {/* Bolinhas de navegação inferiores */}
+      <div className="jobs-dots-container">
         {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)} style={{
-            width: 12, height: 12, borderRadius: '50%', border: 'none', cursor: 'pointer',
-            backgroundColor: i === current ? '#1a5f5f' : '#6abfbf', padding: 0,
-          }} />
+          <button 
+            key={i} 
+            onClick={() => setCurrent(i)} 
+            className={`dot-btn ${i === current ? 'active' : ''}`}
+          />
         ))}
       </div>
     </section>

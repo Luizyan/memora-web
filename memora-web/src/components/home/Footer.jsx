@@ -1,4 +1,6 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Footer.css';
 
 const FacebookIcon = () => (
   <svg width={16} height={16} viewBox="0 0 24 24" fill="#fff">
@@ -55,17 +57,19 @@ const socialIcon = (bg, Icon, url) => (
     rel="noopener noreferrer" 
     style={{
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: 30, height: 30, borderRadius: '50%', backgroundColor: bg,
-      textDecoration: 'none'
+      width: 34, height: 34, borderRadius: '50%', backgroundColor: bg,
+      textDecoration: 'none', transition: 'transform 0.2s ease'
     }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
   >
     <Icon />
   </a>
 );
 
 const ContactItem = ({ icon, children }) => (
-  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 10, fontSize: 14, color: '#ccc' }}>
-    <span style={{ marginTop: 2 }}>{icon}</span>
+  <div className="footer-contact-item">
+    <span className="footer-contact-icon">{icon}</span>
     <span>{children}</span>
   </div>
 );
@@ -79,6 +83,8 @@ export function Footer() {
 
   return (
     <footer className="footer-container">
+      
+      {/* Seção CTA superior */}
       <div className="cta-footer">
         <h2>Quer conhecer nossas soluções ou ficou com dúvida em algo?</h2>
         <button className="falar-conosco-btn" onClick={handleContactClick}>
@@ -86,20 +92,12 @@ export function Footer() {
         </button>
       </div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gap: '40px',
-        paddingTop: '120px',
-        paddingRight: '64px',
-        paddingBottom: '48px',
-        paddingLeft: '64px',
-        borderBottom: '1px solid #333'
-      }}>
+      {/* Grade de informações institucionais */}
+      <div className="footer-body-grid">
 
-        {/* Coluna 1 — Marca */}
+        {/* Coluna 1 — Brasília */}
         <div>
-          <div style={{ color: '#fff', fontSize: 16, marginBottom: 20, fontWeight: 600 }}>memora</div>
+          <h4 className="footer-column-title">Brasília</h4>
           <ContactItem icon={<PinIcon />}>
             SIG Quadra 04, Lote 625 Parte A<br/>Brasília, Distrito Federal
           </ContactItem>
@@ -109,20 +107,11 @@ export function Footer() {
           <ContactItem icon={<MailIcon />}>
             contato@memora.com.br
           </ContactItem>
-          
-          {/* Redes sociais */}
-          <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-            {socialIcon('#1877F2', FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
-            {socialIcon('#FF0000', YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}
-            {socialIcon('#0A66C2', LinkedInIcon, 'https://www.linkedin.com/company/memoraprocessos')}
-            {socialIcon('#E1306C', InstagramIcon, 'https://www.instagram.com/memoraprocessosinovadores/')}
-            {socialIcon('#25D366', PhoneIcon, 'https://wa.me/556139630030')}
-          </div>
         </div>
 
         {/* Coluna 2 — Goiânia */}
         <div>
-          <h4 style={{ color: '#fff', fontSize: 16, marginBottom: 20, fontWeight: 600 }}>Goiânia</h4>
+          <h4 className="footer-column-title">Goiânia</h4>
           <ContactItem icon={<PinIcon />}>
             Av. Castelo Branco, 371, Edifício Lourenço Office, sala 2101 — 74.140-150, St. Oeste
           </ContactItem>
@@ -136,7 +125,7 @@ export function Footer() {
 
         {/* Coluna 3 — Rio de Janeiro */}
         <div>
-          <h4 style={{ color: '#fff', fontSize: 16, marginBottom: 20, fontWeight: 600 }}>Rio de Janeiro</h4>
+          <h4 className="footer-column-title">Rio de Janeiro</h4>
           <ContactItem icon={<PinIcon />}>
             Rua Santa Luzia, 651 — Edifício Santos Dummont Office, 25º Andar, Coworking Town
           </ContactItem>
@@ -148,15 +137,29 @@ export function Footer() {
           </ContactItem>
         </div>
 
+        {/* 🛠️ COLUNA REPOSICIONADA: Fica à direita no PC e abaixo de tudo no Mobile */}
+        <div className="footer-brand-column">
+          <h4 className="footer-column-title">Siga a Memora</h4>
+          <p style={{ color: '#cbd5e1', fontSize: '14px', margin: '0 0 16px 0', lineHeight: '1.5' }}>
+            Acompanhe nossas novidades e soluções inovadoras em nossas redes oficiais.
+          </p>
+          <div className="footer-social-box" style={{ marginTop: 0 }}>
+            {socialIcon('#1877F2', FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
+            {socialIcon('#FF0000', YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}
+            {socialIcon('#0A66C2', LinkedInIcon, 'https://www.linkedin.com/company/memoraprocessos')}
+            {socialIcon('#E1306C', InstagramIcon, 'https://www.instagram.com/memoraprocessosinovadores/')}
+            {socialIcon('#25D366', PhoneIcon, 'https://wa.me/556139630030')}
+          </div>
+        </div>
+
       </div>
 
-      <div style={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '20px 64px', fontSize: 13, color: '#888'
-      }}>
+      {/* Faixa inferior de créditos */}
+      <div className="footer-bottom-bar">
         <p>Copyright © 2021-2026 MEMORA</p>
-        <p style={{ cursor: 'pointer' }}>🔒 Política de privacidade</p>
+        <p className="footer-privacy-link">🔒 Política de privacidade</p>
       </div>
+
     </footer>
   );
 }

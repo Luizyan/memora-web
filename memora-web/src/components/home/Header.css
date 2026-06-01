@@ -1,0 +1,202 @@
+/* ==========================================
+   ESTILOS GERAIS E COMPUTADOR (DESKTOP)
+   ========================================== */
+
+.header-container {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: sans-serif;
+}
+
+/* Top Bar Verde */
+.top-bar-bg {
+  width: 100%;
+  background-color: #047857; /* Verde Esmeralda */
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.top-bar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-icons-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-btn {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #059669;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn:hover {
+  background-color: #10b981;
+}
+
+/* Navbar Principal */
+.navbar-bg {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px;
+  box-sizing: border-box;
+  
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #111827;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+/* Links de Navegação Desktop */
+.nav-links-desktop {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link-item {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-link-item:hover {
+  color: #000000;
+}
+
+.nav-link-item.active {
+  color: #000000;
+  font-weight: 700;
+  border-bottom: 2px solid #047857;
+}
+
+/* Direita: Busca + Botão Menu */
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Barra de Pesquisa */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #d1d5db;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+/* Botão Hamburguer (Escondido no Desktop) */
+.menu-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #1f2937;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Menu de Links Expandido Mobile (Escondido no Desktop) */
+.nav-links-mobile {
+  display: none;
+}
+
+
+/* ==========================================
+   REGRAS DE RESPONSIVIDADE (IPHONE / MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+  
+  .top-bar-content {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* Esconde a barra de links horizontal do PC */
+  .nav-links-desktop {
+    display: none;
+  }
+
+  /* Mostra o botão hamburguer no celular */
+  .menu-toggle-btn {
+    display: block;
+  }
+
+  /* Estiliza a lista vertical que abre no iPhone */
+  .nav-links-mobile {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 16px;
+    gap: 12px;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-link-mobile-item {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .nav-link-mobile-item.active {
+    background-color: #ecfdf5;
+    color: #047857;
+  }
+}

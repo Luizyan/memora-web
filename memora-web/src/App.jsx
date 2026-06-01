@@ -44,12 +44,18 @@ import LerMais9 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais9';
 
 import './App.css';
 
-// COMPONENTE HOME CORRIGIDO
+// COMPONENTE HOME CORRIGIDO COM TAILWIND
 function Home() {
   return (
     <>
-      {/* O conteúdo da página mantém a estrutura e os limites originais */}
-      <div className="container">
+      {/* 
+        Trocamos a div 'container' antiga por classes Tailwind:
+        w-full: Garante que ocupe 100% da tela do iPhone sem vazar.
+        max-w-7xl: No computador, limita o conteúdo para não esticar demais.
+        mx-auto: Centraliza tudo no monitor do PC.
+        px-4 md:px-8: Margem interna nas laterais (menor no celular, maior no PC).
+      */}
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 box-border">
         <Hero />
         <Stats />
         <Clients />
@@ -64,46 +70,57 @@ function Home() {
 function App() {
   return (
     <HashRouter>
-      <Header /> 
-      <Routes>
-        {/* Rotas Principais */}
-        <Route path="/"         element={<Home />} />
-        <Route path="/vejamais" element={<VejaMais />}  /> 
-        <Route path="/clientes" element={<ClientsNav />} />
-        <Route path="/blog"     element={<Blog />} />
-        <Route path="/empresa"  element={<Empresa />} />
-        <Route path="/solucoes" element={<Solucoes />} />
-        <Route path="/contatos" element={<Contatos />} />
+      {/* 
+        Envelopamos o app inteiro em uma div protetora do Tailwind.
+        min-h-screen: Garante que cubra a tela toda.
+        overflow-x-hidden: Desativa aquela barra de rolagem lateral feia que quebra o iPhone.
+      */}
+      <div className="w-full min-h-screen overflow-x-hidden bg-white flex flex-col">
+        <Header /> 
         
-        {/* ROTAS INDIVIDUAIS DOS BLOGS */}
-        <Route path="/blog/1" element={<Blog1 />} />
-        <Route path="/blog/2" element={<Blog2 />} />
-        <Route path="/blog/3" element={<Blog3 />} />
-        <Route path="/blog/4" element={<Blog4 />} />
-        <Route path="/blog/5" element={<Blog5 />} />
-        <Route path="/blog/6" element={<Blog6 />} />
-        
-        {/* ROTAS DAS VAGAS */}
-        <Route path="/vaga/1" element={<Vaga1 />} />
-        <Route path="/vaga/2" element={<Vaga2 />} />
-        <Route path="/vaga/3" element={<Vaga3 />} />
-        <Route path="/vaga/4" element={<Vaga4 />} />
-        <Route path="/vaga/5" element={<Vaga5 />} />
+        {/* As rotas agora acontecem em um ambiente controlado e flexível */}
+        <main className="w-full flex-grow">
+          <Routes>
+            {/* Rotas Principais */}
+            <Route path="/"         element={<Home />} />
+            <Route path="/vejamais" element={<VejaMais />}  /> 
+            <Route path="/clientes" element={<ClientsNav />} />
+            <Route path="/blog"     element={<Blog />} />
+            <Route path="/empresa"  element={<Empresa />} />
+            <Route path="/solucoes" element={<Solucoes />} />
+            <Route path="/contatos" element={<Contatos />} />
+            
+            {/* ROTAS INDIVIDUAIS DOS BLOGS */}
+            <Route path="/blog/1" element={<Blog1 />} />
+            <Route path="/blog/2" element={<Blog2 />} />
+            <Route path="/blog/3" element={<Blog3 />} />
+            <Route path="/blog/4" element={<Blog4 />} />
+            <Route path="/blog/5" element={<Blog5 />} />
+            <Route path="/blog/6" element={<Blog6 />} />
+            
+            {/* ROTAS DAS VAGAS */}
+            <Route path="/vaga/1" element={<Vaga1 />} />
+            <Route path="/vaga/2" element={<Vaga2 />} />
+            <Route path="/vaga/3" element={<Vaga3 />} />
+            <Route path="/vaga/4" element={<Vaga4 />} />
+            <Route path="/vaga/5" element={<Vaga5 />} />
 
-        {/* ROTAS DAS SOLUÇÕES (LER MAIS) */}
-        <Route path="/solucao/1" element={<LerMais1 />} />
-        <Route path="/solucao/2" element={<LerMais2 />} /> 
-        <Route path="/solucao/3" element={<LerMais3 />} />
-        <Route path="/solucao/4" element={<LerMais4 />} />
-        <Route path="/solucao/5" element={<LerMais5 />} />
-        <Route path="/solucao/6" element={<LerMais6 />} />
-        <Route path="/solucao/7" element={<LerMais7 />} />
-        <Route path="/solucao/8" element={<LerMais8 />} />
-        <Route path="/solucao/9" element={<LerMais9 />} />
+            {/* ROTAS DAS SOLUÇÕES (LER MAIS) */}
+            <Route path="/solucao/1" element={<LerMais1 />} />
+            <Route path="/solucao/2" element={<LerMais2 />} /> 
+            <Route path="/solucao/3" element={<LerMais3 />} />
+            <Route path="/solucao/4" element={<LerMais4 />} />
+            <Route path="/solucao/5" element={<LerMais5 />} />
+            <Route path="/solucao/6" element={<LerMais6 />} />
+            <Route path="/solucao/7" element={<LerMais7 />} />
+            <Route path="/solucao/8" element={<LerMais8 />} />
+            <Route path="/solucao/9" element={<LerMais9 />} />
 
-        {/* Rota Fallback para erro 404 */}
-        <Route path="*"         element={<h1>404 – Página não encontrada</h1>} />
-      </Routes>
+            {/* Rota Fallback para erro 404 */}
+            <Route path="*"         element={<h1 className="text-center py-10 text-xl">404 – Página não encontrada</h1>} />
+          </Routes>
+        </main>
+      </div>
     </HashRouter>
   );
 }

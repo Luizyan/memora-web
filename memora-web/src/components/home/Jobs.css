@@ -1,0 +1,162 @@
+/* ==========================================
+   ESTILOS GERAIS DA SEÇÃO (MOBILE FIRST)
+   ========================================== */
+
+.jobs-section {
+  background-color: #b2d8d8;
+  padding: 40px 16px; /* Espaçamento reduzido no mobile */
+  position: relative;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.jobs-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a5f5f;
+  margin: 0 0 24px 0;
+  text-align: center; /* Centralizado no mobile */
+}
+
+/* Container que abraça as setas e os cards */
+.jobs-carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Botões de seta (Esquerda / Direita) */
+.arrow-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #1a5f5f;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0 4px;
+  transition: color 0.2s ease;
+}
+
+.arrow-btn:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Grid de Vagas - 1 coluna por padrão no Celular */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 24px;
+  flex: 1;
+  width: 100%;
+}
+
+/* Estrutura do Card de Vaga */
+.job-card {
+  background-color: #2a9090;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(26, 95, 95, 0.2);
+}
+
+.job-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.job-card-info {
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.job-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d0f0f0;
+  font-size: 13px;
+}
+
+.job-card-title {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Paginação (Bolinhas indicadoras) */
+.jobs-dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.dot-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: #6abfbf;
+  padding: 0;
+  transition: background-color 0.2s ease;
+}
+
+.dot-btn.active {
+  background-color: #1a5f5f;
+}
+
+/* ==========================================
+   RESPONSIVIDADE: TABLETS & IPADS
+   ========================================== */
+@media (min-width: 600px) {
+  .jobs-section {
+    padding: 60px 32px;
+  }
+
+  .jobs-title {
+    font-size: 32px;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto 32px auto;
+  }
+
+  .jobs-carousel-container {
+    gap: 16px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(2, 1fr); /* Exibe 2 cards em telas médias */
+  }
+}
+
+/* ==========================================
+   RESPONSIVIDADE: COMPUTADORES (DESKTOP)
+   ========================================== */
+@media (min-width: 1024px) {
+  .jobs-section {
+    padding: 60px 64px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(3, 1fr); /* Volta a exibir 3 cards simultâneos */
+  }
+}

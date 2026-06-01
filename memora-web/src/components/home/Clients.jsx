@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './Clients.css';
 
 import detran from '../../assets/Clients/detran.png';
 import esmpu from '../../assets/Clients/esmpu.png';
@@ -23,71 +24,91 @@ const clients = [
 ];
 
 export function Clients() {
+  // Estado para controlar quantos itens aparecem baseado na largura da tela
+  const [visibleCount, setVisibleCount] = useState(5);
   const [current, setCurrent] = useState(0);
-  const visible = 5;
-  const maxIndex = Math.max(clients.length - visible, 0);
+
+  useEffect(() => {
+    function handleResize() {
+      const width = window.innerWidth;
+      if (width < 600) {
+        setVisibleCount(2); // Celulares: 2 logos
+      } else if (width < 1024) {
+        setVisibleCount(3); // Tablets: 3 logos
+      } else {
+        setVisibleCount(5); // Desktop: 5 logos
+      }
+    }
+
+    // Executa ao montar e adiciona o listener de redimensionamento
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Garante que o índice máximo seja recalculado dinamicamente
+  const maxIndex = Math.max(clients.length - visibleCount, 0);
+
+  // Ajusta a posição caso a mudança de tela quebre o limite máximo
+  useEffect(() => {
+    if (current > maxIndex) {
+      setCurrent(maxIndex);
+    }
+  }, [visibleCount, maxIndex, current]);
 
   const prev = () => setCurrent((c) => Math.max(c - 1, 0));
   const next = () => setCurrent((c) => Math.min(c + 1, maxIndex));
 
-  const visibleClients = clients.slice(current, current + visible);
-
-  const arrowBtn = (onClick, disabled, label) => (
-    <button onClick={onClick} disabled={disabled} style={{
-      background: 'none', border: 'none', fontSize: 22,
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      color: disabled ? '#ccc' : '#333',
-      flexShrink: 0, padding: '0 8px',
-    }}>{label}</button>
-  );
+  const visibleClients = clients.slice(current, current + visibleCount);
 
   return (
-    <section style={{ padding: '80px 64px', backgroundColor: '#fff' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48 }}>
-        <h2 style={{ fontSize: 32, fontWeight: 700, color: '#111', margin: 0, lineHeight: 1.3 }}>
+    <section className="clients-section">
+      {/* Cabeçalho */}
+      <div className="clients-header">
+        <h2 className="clients-title">
           Conexões que conquistaram a confiança de{' '}
-          <span style={{ color: '#2a9090' }}>grandes clientes</span>
+          <span className="clients-title-highlight">grandes clientes</span>
         </h2>
-        <a href="#" style={{ color: '#111', fontWeight: 600, textDecoration: 'underline', fontSize: 15, whiteSpace: 'nowrap', marginTop: 6 }}>
+        <a href="#" className="clients-see-more">
           + Veja mais
         </a>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        {arrowBtn(prev, current === 0, '‹')}
+      {/* Área do Carrossel */}
+      <div className="clients-carousel-container">
+        <button 
+          onClick={prev} 
+          disabled={current === 0} 
+          className="carousel-arrow-btn"
+        >
+          ‹
+        </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${visible}, 1fr)`, gap: 16, flex: 1 }}>
+        {/* O grid agora recebe uma propriedade CSS customizada contendo o número dinâmico de colunas */}
+        <div 
+          className="clients-grid" 
+          style={{ gridTemplateColumns: `repeat(${visibleCount}, 1fr)` }}
+        >
           {visibleClients.map((client) => (
-            <div key={client.id} style={{
-              backgroundColor: '#f0f0f0',
-              borderRadius: 12,
-              padding: 16,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              aspectRatio: '1',
-            }}>
-              <div style={{
-                backgroundColor: '#fff',
-                borderRadius: 8,
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 16,
-              }}>
+            <div key={client.id} className="client-card-outer">
+              <div className="client-card-inner">
                 <img
                   src={client.logo}
                   alt={client.name}
-                  style={{ maxWidth: '100%', maxHeight: 80, objectFit: 'contain' }}
+                  className="client-logo-img"
                 />
               </div>
             </div>
           ))}
         </div>
 
-        {arrowBtn(next, current === maxIndex, '›')}
+        <button 
+          onClick={next} 
+          disabled={current === maxIndex} 
+          className="carousel-arrow-btn"
+        >
+          ›
+        </button>
       </div>
     </section>
   );

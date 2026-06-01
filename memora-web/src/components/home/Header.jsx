@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Header.css'; // <--- IMPORTANDO SEU NOVO CSS RESPONSIVO
 
 const YoutubeIcon = () => (
   <svg width={18} height={18} viewBox="0 0 24 24" fill="#252222">
@@ -42,6 +43,21 @@ const SearchIcon = () => (
   </svg>
 );
 
+const MenuIcon = () => (
+  <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+);
+
 const iconStyle = (bg) => ({
   display: 'flex',
   alignItems: 'center',
@@ -64,6 +80,7 @@ const navItems = [
 
 export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); 
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
   const location = useLocation();
@@ -88,12 +105,12 @@ export function Header() {
   };
 
   return (
-    <header className="header-wrapper">
+    <header className="header-container">
       
-      {/* Container externo para o fundo verde estender 100% */}
+      {/* 1. TOP BAR */}
       <div className="top-bar-bg">
-        <div className="top-bar">
-          <div className="social-icons-wrapper" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <div className="top-bar-content">
+          <div className="social-icons-wrapper">
             <a href="https://www.facebook.com/MEMORAVEL" target="_blank" rel="noopener noreferrer" style={iconStyle('#fff')}>
               <FacebookIcon />
             </a>
@@ -110,37 +127,25 @@ export function Header() {
               <PhoneIcon />
             </a>
           </div>
-          <button className="admin-btn">Área do Administrator</button>
+          <button className="admin-btn">Área do Administrador</button>
         </div>
       </div>
 
-      {/* Container externo para o fundo branco estender 100% */}
+      {/* 2. NAVBAR */}
       <div className="navbar-bg">
-        <nav className="navbar">
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="logo">MEMORA</div>
+        <div className="navbar-content">
+          
+          <Link to="/" className="logo">
+            MEMORA
           </Link>
 
-          <ul className="nav-links">
+          {/* Links do Desktop (Sumirão automaticamente no celular via CSS) */}
+          <ul className="nav-links-desktop">
             {navItems.map(({ label, to }) => {
-              const isActive =
-                to === '/'
-                  ? location.pathname === '/'
-                  : location.pathname.startsWith(to);
-
+              const isActive = to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
               return (
                 <li key={to}>
-                  <Link
-                    to={to}
-                    style={{
-                      textDecoration: 'none',
-                      color: isActive ? '#000' : 'inherit',
-                      fontWeight: isActive ? '700' : 'inherit',
-                      borderBottom: isActive ? '2px solid currentColor' : '2px solid transparent',
-                      paddingBottom: '2px',
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
+                  <Link to={to} className={`nav-link-item ${isActive ? 'active' : ''}`}>
                     {label}
                   </Link>
                 </li>
@@ -148,46 +153,63 @@ export function Header() {
             })}
           </ul>
 
-          <div
-            onClick={!searchOpen ? handleSearchClick : undefined}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 14px',
-              borderRadius: '20px',
-              border: '1px solid',
-              borderColor: searchOpen ? '#555' : '#ccc',
-              cursor: searchOpen ? 'text' : 'pointer',
-              transition: 'all 0.3s ease',
-              width: searchOpen ? '220px' : '120px',
-              backgroundColor: searchOpen ? '#fff' : 'transparent',
-              boxSizing: 'border-box',
-            }}
-          >
-            <SearchIcon />
-            {searchOpen ? (
-              <input
-                ref={inputRef}
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onBlur={handleBlur}
-                onKeyDown={handleKeyDown}
-                placeholder="Pesquisar..."
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '100%',
-                  fontSize: '14px',
-                  backgroundColor: 'transparent',
-                }}
-              />
-            ) : (
-              <span style={{ fontSize: '14px', color: '#555' }}>Pesquisar</span>
-            )}
+          {/* Lado Direito: Ações */}
+          <div className="nav-right-actions">
+            
+            {/* Caixa de Busca */}
+            <div
+              onClick={!searchOpen ? handleSearchClick : undefined}
+              className="search-container"
+              style={{
+                width: searchOpen ? '180px' : '110px',
+                borderColor: searchOpen ? '#555' : '#ccc',
+                cursor: searchOpen ? 'text' : 'pointer',
+              }}
+            >
+              <SearchIcon />
+              {searchOpen ? (
+                <input
+                  ref={inputRef}
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onBlur={handleBlur}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Pesquisar..."
+                  className="search-input"
+                />
+              ) : (
+                <span style={{ fontSize: '13px', color: '#555' }}>Pesquisar</span>
+              )}
+            </div>
+
+            {/* Botão Hamburguer (Aparecerá apenas no celular via CSS) */}
+            <button className="menu-toggle-btn" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+
           </div>
-        </nav>
+        </div>
       </div>
+
+      {/* 3. MENU MOBILE EXPANSÍVEL (Só renderiza se o botão for clicado E estiver em tela mobile) */}
+      {menuOpen && (
+        <ul className="nav-links-mobile">
+          {navItems.map(({ label, to }) => {
+            const isActive = to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+            return (
+              <li key={to}>
+                <Link 
+                  to={to} 
+                  onClick={() => setMenuOpen(false)} 
+                  className={`nav-link-mobile-item ${isActive ? 'active' : ''}`}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
     </header>
   );

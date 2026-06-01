@@ -9,13 +9,11 @@
 }
 
 /* ==========================================
-   ESTILO DO HERO (FLEXBOX INTELIGENTE)
+   ESTILO DO HERO (RESPONSIVO E CORRIGIDO)
    ========================================== */
 .solucoes-hero {
-  display: flex;
-  flex-direction: column;   /* Padrão Celular: Empilhado verticalmente */
+  display: block;            /* Mudado de flex para block no mobile para garantir fluxo natural */
   background-color: #163640; /* Fundo escuro oficial da Memora */
-  color: white;
   width: 100%;
   box-sizing: border-box;
 }
@@ -25,16 +23,14 @@
   width: 100%;
   padding: 50px 24px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
+/* Título Principal - CORRIGIDO PARA BRANCO */
 .hero-text-wrapper h1 {
   font-size: 2.3rem;
   font-weight: 800;
   margin: 0 0 10px 0;
-  color: #ffffff;
+  color: #ffffff !important; /* Força a cor branca para contrastar com o fundo escuro */
 }
 
 /* Linha verde abaixo do título */
@@ -47,20 +43,20 @@
   margin-top: 10px;
 }
 
+/* Texto de Apoio - CORRIGIDO PARA BRANCO/CINZA CLARO */
 .hero-text-wrapper p {
   font-size: 1.05rem;
   line-height: 1.6;
   margin: 20px 0 0 0;
   font-weight: 300;
-  color: #e0e0e0;
+  color: #ffffff !important; /* Alterado para branco puro para máxima leitura */
 }
 
 /* Container da Imagem no Mobile */
 .hero-image-overlay {
   width: 100%;
-  height: 360px;            /* Altura sob medida para o celular */
-  display: flex;
-  justify-content: center;
+  height: 360px;
+  display: block;
   overflow: hidden;
   background-color: #163640; 
 }
@@ -69,7 +65,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 10%; /* Enquadramento perfeito no celular */
+  object-position: center 10%;
 }
 
 /* ==========================================
@@ -81,10 +77,8 @@
   width: 100%;
 }
 
+/* Container dos Cards convertido para blocos estruturais seguros */
 .solucoes-container {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -95,21 +89,15 @@
   border-radius: 12px;
   overflow: hidden;    
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.solucao-card:hover {
-  transform: translateY(-5px);
+  margin-bottom: 30px; /* Margem para separação no mobile */
+  box-sizing: border-box;
 }
 
 .solucao-card-content {
   padding: 35px 25px;
-  flex-grow: 1;
 }
 
-/* Mantém os títulos alinhados horizontalmente */
+/* Títulos dos Cards */
 .solucao-card-content h3 {
   font-size: 1.35rem;
   color: #1a1a1a;
@@ -119,8 +107,6 @@
   line-height: 1.3;
   font-weight: 700;
   min-height: 54px; 
-  display: flex;
-  align-items: center;
 }
 
 .solucao-card-content p {
@@ -144,23 +130,18 @@
   letter-spacing: 1px;
 }
 
-.btn-ler-mais:hover {
-  color: #163640;
-}
-
 /* ==========================================
    RESPONSIVIDADE: TABLETS MÉDIOS (IPAD MINI / AIR)
    ========================================== */
 @media (min-width: 768px) {
-  /* 🛠️ MUDANÇA ESTRATÉGICA: Ativa o lado a lado logo nos iPads menores,
-     evitando o enquadramento gigante e esmagado */
   .solucoes-hero {
-    flex-direction: row;     
-    height: 480px;           /* Altura confortável para a proporção do tablet */
-    overflow: hidden;
+    display: table; /* Substituição segura para colocar lado a lado sem quebrar */
+    height: 480px;
   }
 
   .hero-content {
+    display: table-cell;
+    vertical-align: middle;
     width: 50%;
     padding: 30px 4% 30px 6%; 
   }
@@ -170,19 +151,20 @@
   }
 
   .hero-image-overlay {
+    display: table-cell;
     width: 50%;
-    height: 100%;
-    max-height: none;
-  }
-  
-  .hero-image-overlay img {
-    object-position: center 10% !important; /* Mantém o rosto e o cabelo centralizados sem cortar */
-    width: 100%;
-    height: 100%;
+    height: 480px;
   }
 
-  .solucoes-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas de cards nos tablets */
+  /* Organização dos cards em 2 colunas */
+  .solucao-card {
+    display: inline-block;
+    width: 48%;
+    margin-right: 3%;
+    vertical-align: top;
+  }
+  .solucao-card:nth-child(2n) {
+    margin-right: 0;
   }
 }
 
@@ -191,7 +173,11 @@
    ========================================== */
 @media (min-width: 1024px) {
   .solucoes-hero {
-    height: 530px;           /* Ajuste fino na altura para telas maiores */
+    height: 530px;
+  }
+  
+  .hero-image-overlay {
+    height: 530px;
   }
 
   .hero-content {
@@ -206,7 +192,15 @@
     padding: 80px 40px;
   }
 
-  .solucoes-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas de cards no PC e iPad Pro */
+  /* Organização dos cards em 3 colunas para telas grandes */
+  .solucao-card {
+    width: 31%;
+    margin-right: 3.5%;
+  }
+  .solucao-card:nth-child(2n) {
+    margin-right: 3.5%;
+  }
+  .solucao-card:nth-child(3n) {
+    margin-right: 0;
   }
 }

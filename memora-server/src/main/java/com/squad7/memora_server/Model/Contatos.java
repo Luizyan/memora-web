@@ -20,5 +20,4 @@ public class Contatos {
     private String email;
     private String nome;
     private String mensagem;
-
 }

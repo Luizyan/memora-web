@@ -2,20 +2,23 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
+// Importando a logo da pasta assets
+import logoMemora from '../../assets/logo-min.png';
+
 const FacebookIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="#fff">
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="#206a6a">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
   </svg>
 );
 
 const YoutubeIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="#fff">
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="#206a6a">
     <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
   </svg>
 );
 
 const LinkedInIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="#fff">
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="#206a6a">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
     <rect x="2" y="9" width="4" height="12"/>
     <circle cx="4" cy="4" r="2"/>
@@ -23,7 +26,7 @@ const LinkedInIcon = () => (
 );
 
 const InstagramIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#206a6a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -50,18 +53,12 @@ const PinIcon = () => (
   </svg>
 );
 
-const socialIcon = (bg, Icon, url) => (
+const socialIcon = (Icon, url) => (
   <a 
     href={url} 
     target="_blank" 
     rel="noopener noreferrer" 
-    style={{
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: 34, height: 34, borderRadius: '50%', backgroundColor: bg,
-      textDecoration: 'none', transition: 'transform 0.2s ease'
-    }}
-    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
+    className="footer-social-circle"
   >
     <Icon />
   </a>
@@ -77,17 +74,13 @@ const ContactItem = ({ icon, children }) => (
 export function Footer() {
   const navigate = useNavigate();
 
-  const handleContactClick = () => {
-    navigate('/contatos');
-  };
-
   return (
     <footer className="footer-container">
       
       {/* Seção CTA superior */}
       <div className="cta-footer">
         <h2>Quer conhecer nossas soluções ou ficou com dúvida em algo?</h2>
-        <button className="falar-conosco-btn" onClick={handleContactClick}>
+        <button className="falar-conosco-btn" onClick={() => navigate('/contatos')}>
           Falar conosco &rarr;
         </button>
       </div>
@@ -95,7 +88,15 @@ export function Footer() {
       {/* Grade de informações institucionais */}
       <div className="footer-body-grid">
 
-        {/* Coluna 1 — Brasília */}
+        {/* Coluna 1 — Logo e Institucional */}
+        <div className="footer-logo-column">
+          <img src={logoMemora} alt="Memora Logo" className="footer-logo-img" />
+          <p className="footer-logo-desc">
+            Transformamos processos em resultados memoráveis com tecnologia e inovação.
+          </p>
+        </div>
+
+        {/* Coluna 2 — Brasília */}
         <div>
           <h4 className="footer-column-title">Brasília</h4>
           <ContactItem icon={<PinIcon />}>
@@ -109,11 +110,11 @@ export function Footer() {
           </ContactItem>
         </div>
 
-        {/* Coluna 2 — Goiânia */}
+        {/* Coluna 3 — Goiânia */}
         <div>
           <h4 className="footer-column-title">Goiânia</h4>
           <ContactItem icon={<PinIcon />}>
-            Av. Castelo Branco, 371, Edifício Lourenço Office, sala 2101 — 74.140-150, St. Oeste
+            Av. Castelo Branco, 371, Edifício Lourenço Office, sala 2101 — St. Oeste
           </ContactItem>
           <ContactItem icon={<PhoneIcon />}>
             (62) 99421-7576
@@ -123,11 +124,11 @@ export function Footer() {
           </ContactItem>
         </div>
 
-        {/* Coluna 3 — Rio de Janeiro */}
+        {/* Coluna 4 — Rio de Janeiro */}
         <div>
           <h4 className="footer-column-title">Rio de Janeiro</h4>
           <ContactItem icon={<PinIcon />}>
-            Rua Santa Luzia, 651 — Edifício Santos Dummont Office, 25º Andar, Coworking Town
+            Rua Santa Luzia, 651 — Edifício Santos Dummont Office, 25º Andar
           </ContactItem>
           <ContactItem icon={<PhoneIcon />}>
             (61) 3963-0030
@@ -137,21 +138,19 @@ export function Footer() {
           </ContactItem>
         </div>
 
-        {/* 🛠️ COLUNA REPOSICIONADA: Fica à direita no PC e abaixo de tudo no Mobile */}
-        <div className="footer-brand-column">
-          <h4 className="footer-column-title">Siga a Memora</h4>
-          <p style={{ color: '#cbd5e1', fontSize: '14px', margin: '0 0 16px 0', lineHeight: '1.5' }}>
-            Acompanhe nossas novidades e soluções inovadoras em nossas redes oficiais.
-          </p>
-          <div className="footer-social-box" style={{ marginTop: 0 }}>
-            {socialIcon('#1877F2', FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
-            {socialIcon('#FF0000', YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}
-            {socialIcon('#0A66C2', LinkedInIcon, 'https://www.linkedin.com/company/memoraprocessos')}
-            {socialIcon('#E1306C', InstagramIcon, 'https://www.instagram.com/memoraprocessosinovadores/')}
-            {socialIcon('#25D366', PhoneIcon, 'https://wa.me/556139630030')}
+      </div>
+
+      {/* Seção Separada: Redes Sociais */}
+      <div className="footer-social-section">
+        <div className="footer-social-content">
+          <span>Siga a Memora</span>
+          <div className="footer-social-box">
+            {socialIcon(FacebookIcon, 'https://www.facebook.com/MEMORAVEL')}
+            {socialIcon(YoutubeIcon, 'https://www.youtube.com/channel/UCrlOxLu5EtExkPNl6my2YNw')}
+            {socialIcon(LinkedInIcon, 'https://www.linkedin.com/company/memoraprocessos')}
+            {socialIcon(InstagramIcon, 'https://www.instagram.com/memoraprocessosinovadores/')}
           </div>
         </div>
-
       </div>
 
       {/* Faixa inferior de créditos */}

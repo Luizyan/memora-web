@@ -2,201 +2,239 @@
    ESTILOS GERAIS E COMPUTADOR (DESKTOP)
    ========================================== */
 
+/* Forçando o container inteiro a assumir o verde petróleo */
 .header-container {
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  font-family: sans-serif;
+  width: 100% !important;
+  background-color: #2d5c5e !important; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  font-family: sans-serif !important;
 }
 
-/* Top Bar Verde */
+/* Top Bar - Mantendo o tom certinho */
 .top-bar-bg {
-  width: 100%;
-  background-color: #047857; /* Verde Esmeralda */
-  padding: 8px 16px;
-  box-sizing: border-box;
+  width: 100% !important;
+  background-color: rgba(0, 0, 0, 0.15) !important; 
+  padding: 8px 16px !important;
+  box-sizing: border-box !important;
 }
 
 .top-bar-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
 .social-icons-wrapper {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
 }
 
 .admin-btn {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: #059669;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
 }
 
 .admin-btn:hover {
-  background-color: #10b981;
+  background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Navbar Principal */
+/* Navbar Principal - Forçando o fundo verde para acabar com o bloqueio branco */
 .navbar-bg {
-  width: 100%;
-  background-color: #ffffff;
-  padding: 16px;
-  box-sizing: border-box;
-  
+  width: 100% !important;
+  background-color: #2d5c5e !important; 
+  padding: 16px !important;
+  box-sizing: border-box !important;
 }
 
 .navbar-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 15px !important;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 900;
-  color: #111827;
-  text-decoration: none;
-  letter-spacing: 0.05em;
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  min-width: 130px !important; 
+  flex-shrink: 0 !important;   
+}
+
+/* Tamanho controlado da imagem */
+.logo-img {
+  height: 45px !important;
+  width: auto !important;
+  display: block !important;
+  object-fit: contain !important;
 }
 
 /* Links de Navegação Desktop */
 .nav-links-desktop {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  display: flex !important;
+  gap: 24px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .nav-link-item {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #4b5563;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  padding-bottom: 4px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s !important;
 }
 
 .nav-link-item:hover {
-  color: #000000;
+  color: #ffffff !important;
 }
 
 .nav-link-item.active {
-  color: #000000;
-  font-weight: 700;
-  border-bottom: 2px solid #047857;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #ffffff !important; 
 }
 
 /* Direita: Busca + Botão Menu */
 .nav-right-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  color: #ffffff !important;
 }
 
 /* Barra de Pesquisa */
 .search-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid #d1d5db;
-  background-color: transparent;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important; 
+  background-color: rgba(0, 0, 0, 0.15) !important;      
+  transition: all 0.3s ease !important;
+  box-sizing: border-box !important;
 }
 
 .search-input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
 }
 
-/* Botão Hamburguer (Escondido no Desktop) */
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Botão Hamburguer */
 .menu-toggle-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: #1f2937;
-  cursor: pointer;
-  padding: 4px;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  color: #ffffff !important; 
+  cursor: pointer !important;
+  padding: 4px !important;
 }
 
-/* Menu de Links Expandido Mobile (Escondido no Desktop) */
 .nav-links-mobile {
-  display: none;
+  display: none !important;
 }
 
 
 /* ==========================================
-   REGRAS DE RESPONSIVIDADE (IPHONE / MOBILE)
+   REGRAS DE RESPONSIVIDADE (CELULAR / IPHONE)
    ========================================== */
 @media (max-width: 768px) {
   
   .top-bar-content {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
   }
 
-  /* Esconde a barra de links horizontal do PC */
+  .navbar-content {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 4px !important;
+  }
+
+  .logo-img {
+    height: 26px !important; 
+    width: auto !important;
+  }
+
   .nav-links-desktop {
-    display: none;
+    display: none !important;
   }
 
-  /* Mostra o botão hamburguer no celular */
   .menu-toggle-btn {
-    display: block;
+    display: block !important;
   }
 
-  /* Estiliza a lista vertical que abre no iPhone */
+  .nav-right-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-grow: 1 !important;
+    justify-content: flex-end !important;
+  }
+
+  .search-container {
+    padding: 4px 10px !important;
+    max-width: 125px !important; 
+  }
+
+  /* Lista mobile com o novo verde petróleo */
   .nav-links-mobile {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 0;
-    padding: 16px;
-    gap: 12px;
-    background-color: #ffffff;
-    border-top: 1px solid #e5e7eb;
-    width: 100%;
-    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    gap: 12px !important;
+    background-color: #2d5c5e !important; 
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .nav-link-mobile-item {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
-    border-radius: 4px;
-    box-sizing: border-box;
+    display: block !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
   }
 
   .nav-link-mobile-item.active {
-    background-color: #ecfdf5;
-    color: #047857;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
   }
 }

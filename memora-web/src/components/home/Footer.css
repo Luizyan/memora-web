@@ -4,7 +4,7 @@
 
 .footer-container {
   width: 100%;
-  background-color: #206a6a; /* Tom petróleo unificado com seu header */
+  background-color: #206a6a; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
 }
@@ -12,10 +12,10 @@
 /* Call to Action - Faixa superior */
 .cta-footer {
   background-color: #206a6a;
-  padding: 40px 16px;       /* Ajuste de respiro para telas estreitas */
+  padding: 40px 16px;       
   display: flex;
-  flex-direction: column;   /* Elementos empilhados no celular */
-  align-items: center;      /* Centraliza o bloco do botão e do h2 horizontalmente */
+  flex-direction: column;   
+  align-items: center;      
   justify-content: center;
   gap: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -23,25 +23,24 @@
   width: 100%;
 }
 
-/* Força a centralização absoluta de cada linha do título no ambiente mobile */
 .footer-container .cta-footer h2 {
   color: #ffffff;
   font-size: 20px;
   font-weight: 600;
-  margin: 0 auto !important; /* Zera qualquer empurrão ou herança lateral */
+  margin: 0 auto !important; 
   padding: 0 !important;
-  max-width: 100%;           /* Ocupa toda a largura disponível para alinhar pelo meio */
+  max-width: 100%;           
   line-height: 1.4;
-  text-align: center !important; /* Alinha letra por letra perfeitamente no meio da tela */
+  text-align: center !important; 
   display: block;
   box-sizing: border-box;
 }
 
 .falar-conosco-btn {
-  background-color: #ffffff;  /* Alterado para Branco para criar contraste real com o fundo */
-  color: #206a6a;             /* Texto na cor petróleo institucional */
+  background-color: #ffffff;  
+  color: #206a6a;             
   border: none;
-  border-radius: 50px;        /* Formato de pílula arredondada elegante */
+  border-radius: 50px;        
   padding: 14px 28px;
   font-size: 14px;
   font-weight: bold;
@@ -49,10 +48,8 @@
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
   white-space: nowrap;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  
-  /* 🛠️ AQUI ESTÁ O SEGREDO DO MOBILE: */
-  margin: 0 auto !important;  /* Move o botão das pontas e força a centralização matemática perfeita */
-  display: block;             /* Garante que o botão se comporte como um bloco isolado para aceitar a margem automática */
+  margin: 0 auto !important;  
+  display: block;             
 }
 
 .falar-conosco-btn:hover {
@@ -61,16 +58,37 @@
   transform: translateY(-2px);
 }
 
-/* Corpo do Footer - Informações das Cidades */
+/* Corpo do Footer - Grade de Informações */
 .footer-body-grid {
   display: grid;
-  grid-template-columns: 1fr; /* 1 coluna no celular */
+  grid-template-columns: 1fr; 
   gap: 40px;
-  padding: 60px 24px 40px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 24px;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
+}
+
+/* Coluna Especial da Logo */
+.footer-logo-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.footer-logo-desc {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .footer-column-title {
@@ -90,7 +108,7 @@
   gap: 10px;
   margin-bottom: 12px;
   font-size: 14px;
-  color: #e2e8f0; /* Texto claro e confortável para leitura */
+  color: #e2e8f0; 
   line-height: 1.5;
 }
 
@@ -101,16 +119,54 @@
   align-items: center;
 }
 
-/* Container de Redes Sociais */
-.footer-social-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
+/* Nova Seção de Redes Sociais Isolada */
+.footer-social-section {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
-.footer-brand-column p {
-  color: #cbd5e1;
+.footer-social-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-social-content span {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-social-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Círculos brancos das redes sociais padronizados */
+.footer-social-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.footer-social-circle:hover {
+  transform: scale(1.1);
 }
 
 /* Faixa Inferior de Direitos Autorais */
@@ -142,10 +198,21 @@
    ========================================== */
 @media (min-width: 680px) {
   .footer-body-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas no tablet */
-    padding: 60px 40px 48px 40px;
+    grid-template-columns: repeat(2, 1fr); 
+    padding: 50px 40px;
+  }
+
+  .footer-logo-column {
+    align-items: flex-start;
+    text-align: left;
   }
   
+  .footer-social-content {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
   .footer-bottom-bar {
     flex-direction: row;
     justify-content: space-between;
@@ -154,35 +221,40 @@
 }
 
 /* ==========================================
-   RESPONSIVIDADE: DESKTOP E NEST HUB MAX (TELAS GRANDES)
+   RESPONSIVIDADE: DESKTOP (TELAS GRANDES)
    ========================================== */
 @media (min-width: 1024px) {
   .cta-footer {
-    flex-direction: row;          /* Força alinhamento lado a lado no PC e Nest Hub */
-    justify-content: space-between; /* Empurra o texto totalmente para a esquerda e botão para a direita */
-    align-items: center !important; /* 🛠️ CORREÇÃO: Alinhamento vertical central absoluto e proporcional */
-    gap: 40px;                    /* Distância fixa de segurança entre os dois */
-    padding: 50px 64px;           /* Respiro interno idêntico às margens laterais das cidades */
+    flex-direction: row;          
+    justify-content: space-between; 
+    align-items: center !important; 
+    gap: 40px;                    
+    padding: 50px 64px;           
     border-bottom: none;
-    max-width: 1200px;            /* Alinha os limites do CTA com o corpo das cidades */
-    margin: 0 auto;               /* Centraliza a faixa inteira na tela */
+    max-width: 1200px;            
+    margin: 0 auto;               
   }
 
   .footer-container .cta-footer h2 {
     font-size: 24px;
-    text-align: left !important;  /* No desktop, o texto aponta para o botão na direita */
-    max-width: 650px;             /* Permite que o h2 cresça proporcionalmente sem quebrar linhas à toa */
-    margin: 0 !important;         /* Reseta a margem automática centralizada do mobile */
+    text-align: left !important;  
+    max-width: 650px;             
+    margin: 0 !important;         
     width: auto;
   }
 
   .falar-conosco-btn {
-    margin: 0 !important;         /* Reseta a margem automática centralizada do mobile */
+    margin: 0 !important;         
   }
 
   .footer-body-grid {
-    grid-template-columns: repeat(4, 1fr); /* 🛠️ ATUALIZADO: 4 colunas perfeitas com a nova coluna de redes sociais à direita */
-    padding: 40px 64px 48px 64px;
+    grid-template-columns: 1.2fr repeat(3, 1fr); /* Dá mais espaço proporcional para a coluna da logo */
+    padding: 50px 64px;
+    gap: 32px;
+  }
+
+  .footer-social-content {
+    padding: 0 48px;
   }
 
   .footer-bottom-bar {

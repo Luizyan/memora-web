@@ -9,7 +9,8 @@ export function Stats() {
   return (
     <section className="stats">
       <div className="stats-info">
-        <h2>Nossos resultados</h2>
+        {/* Adicionado o fontWeight: 800 ou 'bold' para engrossar a fonte */}
+        <h2 style={{ fontWeight: 800 }}>Nossos resultados</h2>
       </div>
       <div className="stats-grid">
         {resultados.map((item, index) => (

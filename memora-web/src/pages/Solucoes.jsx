@@ -63,8 +63,8 @@ export default function Solucoes() {
         </div>
         <div className="hero-image-overlay">
           <img 
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200" 
-            alt="Executivo sorrindo" 
+            src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1200" 
+            alt="Grupo colaborando em escritório" 
           />
         </div>
       </section>

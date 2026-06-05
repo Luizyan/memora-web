@@ -72,13 +72,13 @@ const iconStyle = (bg) => ({
   flexShrink: 0,
 });
 
+// REMOVIDO "CONTATOS" DA LISTA ABAIXO
 const navItems = [
   { label: 'Início',   to: '/' },
   { label: 'Empresa',  to: '/empresa' },
   { label: 'Clientes', to: '/clientes' },
   { label: 'Soluções', to: '/solucoes' },
   { label: 'Blog',     to: '/blog' },
-  { label: 'Contatos', to: '/contatos' },
 ];
 
 export function Header() {

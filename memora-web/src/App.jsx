@@ -14,7 +14,6 @@ import ClientsNav from './pages/ClientsNav';
 import Blog       from './pages/Blog';
 import Empresa    from './pages/Empresa';
 import Solucoes   from './pages/Solucoes';
-import Contatos   from './pages/Contatos';
 
 // IMPORTAÇÕES DOS BLOGS INDIVIDUAIS (BlogPages)
 import Blog1 from './PaginasRedirecionadas/BlogR/BlogPages/Blog1';
@@ -48,13 +47,6 @@ import './App.css';
 function Home() {
   return (
     <>
-      {/* 
-        Trocamos a div 'container' antiga por classes Tailwind:
-        w-full: Garante que ocupe 100% da tela do iPhone sem vazar.
-        max-w-7xl: No computador, limita o conteúdo para não esticar demais.
-        mx-auto: Centraliza tudo no monitor do PC.
-        px-4 md:px-8: Margem interna nas laterais (menor no celular, maior no PC).
-      */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 box-border">
         <Hero />
         <Stats />
@@ -70,8 +62,7 @@ function Home() {
 function App() {
   return (
     <HashRouter>
-      {/* 
-        Envelopamos o app inteiro em uma div protetora do Tailwind.
+      {/* Envelopamos o app inteiro em uma div protetora do Tailwind.
         min-h-screen: Garante que cubra a tela toda.
         overflow-x-hidden: Desativa aquela barra de rolagem lateral feia que quebra o iPhone.
       */}
@@ -88,7 +79,6 @@ function App() {
             <Route path="/blog"     element={<Blog />} />
             <Route path="/empresa"  element={<Empresa />} />
             <Route path="/solucoes" element={<Solucoes />} />
-            <Route path="/contatos" element={<Contatos />} />
             
             {/* ROTAS INDIVIDUAIS DOS BLOGS */}
             <Route path="/blog/1" element={<Blog1 />} />
@@ -116,8 +106,6 @@ function App() {
             <Route path="/solucao/8" element={<LerMais8 />} />
             <Route path="/solucao/9" element={<LerMais9 />} />
 
-            {/* Rota Fallback para erro 404 */}
-            <Route path="*"         element={<h1 className="text-center py-10 text-xl">404 – Página não encontrada</h1>} />
           </Routes>
         </main>
       </div>

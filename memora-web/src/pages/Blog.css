@@ -8,17 +8,112 @@
   box-sizing: border-box;
 }
 
-/* MIOLO DOS CARDS - Aqui sim controlamos o limite de 1200px e centralizamos */
+/* ── SEARCH WRAPPER ── */
+.blog-search-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 0 20px; /* alinha com o topo do blog-grid (header fixo) */
+  box-sizing: border-box;
+}
+
+.blog-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #2a9090;
+  border-radius: 8px; 
+  padding: 12px 16px;
+  background: #fff;
+  width: 380px;
+  color: #2a9090;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.blog-search-box:focus-within {
+  box-shadow: 0 4px 16px rgba(42, 144, 144, 0.2);
+}
+
+.blog-search-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  background: transparent;
+}
+
+.blog-search-box input::placeholder {
+  color: #aaa;
+}
+
+.search-clear {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 13px;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.search-clear:hover {
+  color: #555;
+}
+
+/* CHIPS DE CATEGORIA */
+.blog-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.blog-chip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #2a9090;
+  background: #fff;
+  color: #2a9090;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.blog-chip:hover {
+  background: #e6f4f4;
+}
+
+.blog-chip.active {
+  background: #2a9090;
+  color: #fff;
+}
+
+/* MIOLO DOS CARDS */
 .blog-grid {
-  flex: 1; /* Empurra o footer sempre para o final da página */
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 30px;
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto; /* Centraliza a grid na tela */
-  padding: 120px 20px 60px 20px; /* Padding superior alto para o Header fixo */
+  margin: 0 auto;
+  padding: 24px 20px 60px 20px; /* padding-top reduzido — o search-wrapper já tem o espaço do header */
   box-sizing: border-box;
+}
+
+/* SEM RESULTADOS */
+.blog-no-results {
+  text-align: center;
+  color: #aaa;
+  padding: 60px 0;
+  grid-column: 1 / -1;
+  font-size: 15px;
 }
 
 /* CARD INDIVIDUAL */
@@ -37,7 +132,6 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* LINKS COMPORTAMENTO */
 .card-image-link {
   display: block;
   width: 100%;
@@ -59,7 +153,6 @@
   object-fit: cover;
 }
 
-/* TAGS */
 .card-tags {
   position: absolute;
   bottom: 12px;
@@ -81,7 +174,6 @@
   letter-spacing: 0.5px;
 }
 
-/* CORPO DO CARD */
 .card-body {
   padding: 24px;
   display: flex;
@@ -89,7 +181,6 @@
   flex-grow: 1;
 }
 
-/* TEXTOS E LIMITADORES DE LINHA */
 .card-title {
   color: #0c3c3c;
   font-size: 20px;
@@ -113,7 +204,6 @@
   overflow: hidden;
 }
 
-/* METADADOS DO CARD */
 .card-footer {
   margin-top: auto;
   padding-top: 12px;

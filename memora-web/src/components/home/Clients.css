@@ -1,28 +1,28 @@
 /* ==========================================
-   ESTILOS BASE DA SEÇÃO (MOBILE FIRST)
-   ========================================== */
+   SEÇÃO
+========================================== */
+
 .clients-section {
-  padding: 40px 20px;
-  background-color: #fff;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 80px 20px;
+  background: #fff;
+  overflow: hidden;
 }
 
-/* Cabeçalho com Flexbox Responsivo */
 .clients-header {
   display: flex;
-  flex-direction: column;    /* Empilha no celular */
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 32px;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  gap: 20px;
 }
 
 .clients-title {
-  font-size: 24px;          /* Fonte menor e elegante no mobile */
+  font-size: 32px;
   font-weight: 700;
   color: #111;
   margin: 0;
   line-height: 1.3;
+  max-width: 700px;
 }
 
 .clients-title-highlight {
@@ -31,148 +31,134 @@
 
 .clients-see-more {
   color: #111;
-  font-weight: 600;
   text-decoration: underline;
-  font-size: 14px;
-  white-space: nowrap;
+  font-weight: 600;
 }
 
-/* Container do Carrossel */
-.clients-carousel-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ==========================================
+   CARROSSEL INFINITO
+========================================== */
+
+.clients-slider {
   width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Botões de Seta */
-.carousel-arrow-btn {
-  background: none;
-  border: none;
-  font-size: 28px;
-  font-weight: 300;
-  cursor: pointer;
-  color: #333;
-  flex-shrink: 0;
-  padding: 0 4px;
-  transition: color 0.2s, transform 0.2s;
+.clients-track {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  gap: 20px;
+  width: max-content;
+  animation: scrollClients 25s linear infinite;
 }
 
-.carousel-arrow-btn:disabled {
-  color: #ccc;
-  cursor: not-allowed;
+.clients-track:hover {
+  animation-play-state: paused;
 }
 
-.carousel-arrow-btn:not(:disabled):hover {
-  color: #2a9090;
-  transform: scale(1.2);
-}
+/* ==========================================
+   CARDS
+========================================== */
 
-/* Grid de Logos Dinâmico */
-.clients-grid {
-  display: grid;
-  gap: 12px;
-  flex: 1;
-  transition: all 0.3s ease;
-}
-
-/* Moldura Cinza Externa */
 .client-card-outer {
-  background-color: #f0f0f0;
-  border-radius: 12px;
-  padding: 10px;
+  min-width: 220px;
+  width: 220px;
+  height: 140px;
+
+  background: #f2f2f2;
+  border-radius: 16px;
+  padding: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1; /* Mantém o card perfeitamente quadrado */
 }
 
-/* Moldura Branca Interna */
 .client-card-inner {
-  background-color: #fff;
-  border-radius: 8px;
   width: 100%;
   height: 100%;
+  background: white;
+  border-radius: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  box-sizing: border-box;
+  padding: 15px;
 }
 
-/* Controle de tamanho das Imagens */
 .client-logo-img {
   max-width: 100%;
-  max-height: 55px; /* Altura controlada para não estourar telas pequenas */
+  max-height: 80px;
   object-fit: contain;
 }
 
 /* ==========================================
-   RESPONSIVIDADE: TABLETS (MID-SCREENS)
-   ========================================== */
-@media (min-width: 768px) {
-  .clients-section {
-    padding: 60px 40px;
+   ANIMAÇÃO
+========================================== */
+
+@keyframes scrollClients {
+  0% {
+    transform: translateX(0);
   }
 
-  .clients-header {
-    flex-direction: row;     /* Coloca lado a lado */
-    justify-content: space-between;
-    align-items: flex-end;   /* Alinha as bases */
-    margin-bottom: 40px;
-  }
-
-  .clients-title {
-    font-size: 28px;
-    max-width: 75%;
-  }
-
-  .clients-grid {
-    gap: 16px;
-  }
-
-  .client-card-outer {
-    padding: 14px;
-  }
-
-  .client-logo-img {
-    max-height: 70px;
+  100% {
+    transform: translateX(calc(-50% - 10px));
   }
 }
 
 /* ==========================================
-   RESPONSIVIDADE: DESKTOP (LARGE SCREENS)
-   ========================================== */
-@media (min-width: 1024px) {
+   TABLET
+========================================== */
+
+@media (max-width: 768px) {
   .clients-section {
-    padding: 80px 64px;
-    max-width: 1200px;
-    margin: 0 auto;         /* Centraliza a seção inteira no monitor */
+    padding: 60px 16px;
+  }
+
+  .clients-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .clients-title {
-    font-size: 32px;
-  }
-
-  .clients-see-more {
-    font-size: 15px;
-    margin-bottom: 4px;     /* Ajuste fino de alinhamento com a base do título */
-  }
-
-  .carousel-arrow-btn {
-    font-size: 36px;
-    padding: 0 12px;
+    font-size: 26px;
   }
 
   .client-card-outer {
-    padding: 16px;
+    min-width: 180px;
+    width: 180px;
+    height: 120px;
   }
 
   .client-logo-img {
-    max-height: 80px;
+    max-height: 65px;
+  }
+
+  .clients-track {
+    animation-duration: 20s;
+  }
+}
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 480px) {
+  .clients-title {
+    font-size: 22px;
+  }
+
+  .client-card-outer {
+    min-width: 150px;
+    width: 150px;
+    height: 100px;
+  }
+
+  .client-logo-img {
+    max-height: 50px;
+  }
+
+  .clients-track {
+    animation-duration: 15s;
   }
 }

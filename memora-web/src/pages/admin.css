@@ -1,0 +1,71 @@
+.admin-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f6f7;
+}
+
+.admin-content {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid #2d5c5e;
+}
+
+.admin-content h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2d5c5e;
+  font-weight: 600;
+}
+
+.admin-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-content input,
+.admin-content textarea {
+  padding: 12px;
+  border: 1px solid #d0d7d9;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.admin-content input:focus,
+.admin-content textarea:focus {
+  border-color: #2d5c5e;
+  box-shadow: 0 0 0 2px rgba(45, 92, 94, 0.15);
+}
+
+.admin-content textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.admin-content button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2d5c5e;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-content button:hover {
+  background: #244a4b;
+}
+
+.admin-content button:active {
+  transform: scale(0.98);
+}

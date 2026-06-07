@@ -8,12 +8,17 @@ import { Footer }  from './components/home/Footer';
 import { Jobs }    from './components/home/Jobs';
 import { Clients } from './components/home/Clients';
 
+import PrivateRoute from "./components/PrivateRoute";
+
+
 import { VejaMais } from './PaginasRedirecionadas/HomeR/VejaMais';
 
 import ClientsNav from './pages/ClientsNav';
 import Blog       from './pages/Blog';
 import Empresa    from './pages/Empresa';
 import Solucoes   from './pages/Solucoes';
+import Admin      from './pages/admin';
+import Login      from "./pages/login";
 
 // IMPORTAÇÕES DOS BLOGS INDIVIDUAIS (BlogPages)
 import Blog1 from './PaginasRedirecionadas/BlogR/BlogPages/Blog1';
@@ -62,14 +67,10 @@ function Home() {
 function App() {
   return (
     <HashRouter>
-      {/* Envelopamos o app inteiro em uma div protetora do Tailwind.
-        min-h-screen: Garante que cubra a tela toda.
-        overflow-x-hidden: Desativa aquela barra de rolagem lateral feia que quebra o iPhone.
-      */}
       <div className="w-full min-h-screen overflow-x-hidden bg-white flex flex-col">
         <Header /> 
         
-        {/* As rotas agora acontecem em um ambiente controlado e flexível */}
+        
         <main className="w-full flex-grow">
           <Routes>
             {/* Rotas Principais */}
@@ -79,6 +80,8 @@ function App() {
             <Route path="/blog"     element={<Blog />} />
             <Route path="/empresa"  element={<Empresa />} />
             <Route path="/solucoes" element={<Solucoes />} />
+            <Route path="/admin"    element={<PrivateRoute><Admin /></PrivateRoute>} />
+            <Route path="/login"    element={<Login />} />
             
             {/* ROTAS INDIVIDUAIS DOS BLOGS */}
             <Route path="/blog/1" element={<Blog1 />} />

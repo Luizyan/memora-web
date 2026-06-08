@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./admin.css"; // Certifique-se de que o seu admin.css está na mesma pasta
+import { Link } from "react-router-dom"; // <-- IMPORTANTE: adicionado para corrigir o fluxo de navegação
+import "./admin.css"; 
 
 export default function Admin() {
   // Estados do Formulário de Cadastro/Edição
@@ -42,7 +43,6 @@ export default function Admin() {
     
     const method = editandoId ? "PUT" : "POST";
 
-    // Tratamento básico para evitar o envio de espaços em branco desnecessários
     const dadosServico = { 
       titulo: titulo.trim(), 
       descricao: descricao.trim(), 
@@ -61,18 +61,16 @@ export default function Admin() {
       })
       .then((resposta) => {
         if (editandoId) {
-          // UPDATE DINÂMICO: Atualiza apenas o item editado na lista sem dar refresh
           setServicos((listaAtual) =>
             listaAtual.map((item) =>
               item.id === editandoId ? { ...item, ...dadosServico } : item
             )
           );
-          setMensagem("Serviço atualizado com sucesso!");
+          setMensagem("Solução atualizada com sucesso!");
         } else {
-          // CREATE DINÂMICO: Adiciona o novo card gerado diretamente no final da tabela
           const novoItem = { id: resposta.id, ...dadosServico };
           setServicos((listaAtual) => [...listaAtual, novoItem]);
-          setMensagem("Serviço criado com sucesso!");
+          setMensagem("Solução criada com sucesso!");
         }
 
         limparFormulario();
@@ -95,10 +93,8 @@ export default function Admin() {
           return res.json();
         })
         .then(() => {
-          // DELETE DINÂMICO: Remove o item filtrando a lista na hora por ID
           setServicos((listaAtual) => listaAtual.filter((item) => item.id !== id));
-          
-          setMensagem("Serviço removido com sucesso!");
+          setMensagem("Solução removida com sucesso!");
           if (editandoId === id) limparFormulario();
           setTimeout(() => setMensagem(""), 4000);
         })
@@ -106,7 +102,6 @@ export default function Admin() {
     }
   };
 
-  // Prepara os inputs clonando os dados do card escolhido para edição
   const prepararEdicao = (servico) => {
     setEditandoId(servico.id);
     setTitulo(servico.titulo);
@@ -125,130 +120,144 @@ export default function Admin() {
   };
 
   return (
-    <div className="admin-page-container">
+    <div className="admin-global-wrapper" style={{ padding: "20px" }}>
       
-      {/* PAINEL DA ESQUERDA: Formulário Dinâmico */}
-      <div className="admin-card-panel">
-        <h2 className="admin-panel-title">
-          {editandoId ? "📝 Editar Solução" : "✨ Nova Solução"}
-        </h2>
-        
-        {mensagem && (
-          <div className="admin-alert-success">
-            {mensagem}
-          </div>
-        )}
+      {/* SEÇÃO DE LINKS DE NAVEGAÇÃO RÁPIDA ENTRE PAINÉIS */}
+      <nav className="admin-nav-tabs" style={{ display: "flex", gap: "15px", marginBottom: "30px", borderBottom: "1px solid #ddd", paddingBottom: "10px" }}>
+        <Link to="/admin" style={{ padding: "10px 20px", background: "#00a896", color: "#fff", textDecoration: "none", borderRadius: "5px", fontWeight: "bold" }}>
+          💼 Gerenciar Soluções
+        </Link>
+        <Link to="/adminblog" style={{ padding: "10px 20px", background: "#f1f5f9", color: "#334155", textDecoration: "none", borderRadius: "5px", fontWeight: "500" }}>
+          📝 Gerenciar Blog
+        </Link>
+        <Link to="/adminvagas" style={{ padding: "10px 20px", background: "#f1f5f9", color: "#334155", textDecoration: "none", borderRadius: "5px", fontWeight: "500" }}>
+          🚀 Gerenciar Vagas
+        </Link>
+      </nav>
 
-        <form onSubmit={salvarServico} className="admin-form">
-          <div className="form-group">
-            <label>Título do Card:</label>
-            <input
-              type="text" 
-              required 
-              className="form-input"
-              value={titulo} 
-              onChange={(e) => setTitulo(e.target.value)}
-              placeholder="Ex: Consultoria em Nuvem"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Descrição Curta (Aparece no Card):</label>
-            <textarea
-              required 
-              className="form-input form-textarea"
-              style={{ height: "80px" }}
-              value={descricao} 
-              onChange={(e) => setDescricao(e.target.value)}
-              placeholder="Resumo rápido explicativo..."
-            />
-          </div>
-
-          <div className="form-group">
-            <label>URL da Imagem Banner:</label>
-            <input
-              type="text" 
-              className="form-input"
-              value={imagem} 
-              onChange={(e) => setImagem(e.target.value)}
-              placeholder="https://images.unsplash.com/..."
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Conteúdo Completo (Aparece no Ler Mais):</label>
-            <textarea
-              className="form-input form-textarea"
-              style={{ height: "130px" }}
-              value={conteudo} 
-              onChange={(e) => setConteudo(e.target.value)}
-              placeholder="Digite aqui o texto longo detalhado..."
-            />
-          </div>
-
-          <button type="submit" className="btn-admin-submit">
-            {editandoId ? "Atualizar Alterações" : "Criar Card"}
-          </button>
-
-          {editandoId && (
-            <button type="button" onClick={limparFormulario} className="btn-admin-cancel">
-              Cancelar Edição
-            </button>
+      <div className="admin-page-container">
+        {/* PAINEL DA ESQUERDA: Formulário Dinâmico */}
+        <div className="admin-card-panel">
+          <h2 className="admin-panel-title">
+            {editandoId ? "📝 Editar Solução" : "✨ Nova Solução"}
+          </h2>
+          
+          {mensagem && (
+            <div className="admin-alert-success">
+              {mensagem}
+            </div>
           )}
-        </form>
-      </div>
 
-      {/* PAINEL DA DIREITA: Tabela Gerencial */}
-      <div className="admin-card-panel">
-        <h2 className="admin-panel-title">📋 Monitoramento de Cards ({servicos.length})</h2>
-        
-        <div className="table-responsive-container">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Descrição Resumida</th>
-                <th style={{ textAlign: "center" }}>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {servicos.map((servico) => (
-                <tr key={servico.id}>
-                  <td className="truncate-text font-semibold">
-                    {servico.titulo}
-                  </td>
-                  <td className="truncate-text max-width-desc">
-                    {servico.descricao}
-                  </td>
-                  <td className="actions-cell">
-                    <button
-                      onClick={() => prepararEdicao(servico)}
-                      className="btn-action-edit"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => deletarServico(servico.id)}
-                      className="btn-action-delete"
-                    >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              
-              {servicos.length === 0 && (
+          <form onSubmit={salvarServico} className="admin-form">
+            <div className="form-group">
+              <label>Título do Card:</label>
+              <input
+                type="text" 
+                required 
+                className="form-input"
+                value={titulo} 
+                onChange={(e) => setTitulo(e.target.value)}
+                placeholder="Ex: Consultoria em Nuvem"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Descrição Curta (Aparece no Card):</label>
+              <textarea
+                required 
+                className="form-input form-textarea"
+                style={{ height: "80px" }}
+                value={descricao} 
+                onChange={(e) => setDescricao(e.target.value)}
+                placeholder="Resumo rápido explicativo..."
+              />
+            </div>
+
+            <div className="form-group">
+              <label>URL da Imagem Banner:</label>
+              <input
+                type="text" 
+                className="form-input"
+                value={imagem} 
+                onChange={(e) => setImagem(e.target.value)}
+                placeholder="https://images.unsplash.com/..."
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Conteúdo Completo (Aparece no Ler Mais):</label>
+              <textarea
+                className="form-input form-textarea"
+                style={{ height: "130px" }}
+                value={conteudo} 
+                onChange={(e) => setConteudo(e.target.value)}
+                placeholder="Digite aqui o texto longo detalhado..."
+              />
+            </div>
+
+            <button type="submit" className="btn-admin-submit">
+              {editandoId ? "Atualizar Alterações" : "Criar Card"}
+            </button>
+
+            {editandoId && (
+              <button type="button" onClick={limparFormulario} className="btn-admin-cancel">
+                Cancelar Edição
+              </button>
+            )}
+          </form>
+        </div>
+
+        {/* PAINEL DA DIREITA: Tabela Gerencial */}
+        <div className="admin-card-panel">
+          <h2 className="admin-panel-title">📋 Monitoramento de Cards ({servicos.length})</h2>
+          
+          <div className="table-responsive-container">
+            <table className="admin-table">
+              <thead>
                 <tr>
-                  <td colSpan="3" style={{ textAlign: "center", padding: "40px 0", color: "#888" }}>
-                    Nenhum serviço registrado no banco de dados.
-                  </td>
+                  <th>Título</th>
+                  <th>Descrição Resumida</th>
+                  <th style={{ textAlign: "center" }}>Ações</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {servicos.map((servico) => (
+                  <tr key={servico.id}>
+                    <td className="truncate-text font-semibold">
+                      {servico.titulo}
+                    </td>
+                    <td className="truncate-text max-width-desc">
+                      {servico.descricao}
+                    </td>
+                    <td className="actions-cell">
+                      <button
+                        onClick={() => prepararEdicao(servico)}
+                        className="btn-action-edit"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        onClick={() => deletarServico(servico.id)}
+                        className="btn-action-delete"
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                
+                {servicos.length === 0 && (
+                  <tr>
+                    <td colSpan="3" style={{ textAlign: "center", padding: "40px 0", color: "#888" }}>
+                      Nenhum serviço registrado no banco de dados.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
     </div>
   );
 }

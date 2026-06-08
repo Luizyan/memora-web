@@ -17,17 +17,11 @@ import Blog       from './pages/Blog';
 import Empresa    from './pages/Empresa';
 import Solucoes   from './pages/Solucoes';
 import Admin      from './pages/admin';
-import AdminBlog  from './pages/adminBlog'; // <--- 1. IMPORTAÇÃO DO NOVO ADMIN DO BLOG
+import AdminBlog  from './pages/adminBlog';
+import { AdminVagas } from './pages/AdminVagas';
 import Login      from "./pages/login";
 import DetalheSolucao from "./pages/DetalheSolucao"; 
-import PostInterno    from "./PaginasRedirecionadas/BlogR/PostInterno"; // <--- 2. IMPORTAÇÃO DA PÁGINA DINÂMICA DO BLOG
-
-// IMPORTAÇÕES DAS VAGAS (PagesVagas)
-import Vaga1 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga1';
-import Vaga2 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga2';
-import Vaga3 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga3';
-import Vaga4 from './PaginasRedirecionadas/HomeR/PagesVagas/vaga4'; 
-import Vaga5 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga5';
+import PostInterno    from "./PaginasRedirecionadas/BlogR/PostInterno"; 
 
 import './App.css';
 
@@ -66,17 +60,10 @@ function App() {
             
             {/* PAINÉIS ADMINISTRATIVOS PROTEGIDOS */}
             <Route path="/admin"      element={<PrivateRoute><Admin /></PrivateRoute>} />
-            <Route path="/adminblog" element={<PrivateRoute><AdminBlog /></PrivateRoute>} />
-            
+            <Route path="/adminblog"  element={<PrivateRoute><AdminBlog /></PrivateRoute>} />
+            <Route path="/adminvagas" element={<PrivateRoute><AdminVagas /></PrivateRoute>} /> 
             
             <Route path="/blog/:id" element={<PostInterno />} /> 
-            
-            {/* ROTAS DAS VAGAS */}
-            <Route path="/vaga/1" element={<Vaga1 />} />
-            <Route path="/vaga/2" element={<Vaga2 />} />
-            <Route path="/vaga/3" element={<Vaga3 />} />
-            <Route path="/vaga/4" element={<Vaga4 />} />
-            <Route path="/vaga/5" element={<Vaga5 />} />
 
             {/* ROTA ÚNICA E DINÂMICA DAS SOLUÇÕES */}
             <Route path="/solucao/:id" element={<DetalheSolucao />} />

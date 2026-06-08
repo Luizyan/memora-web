@@ -67,7 +67,7 @@ exports.atualizar = (req, res) => {
   db.query(sql, [titulo, descricao, imagem, conteudo, id], (err, result) => {
     if (err) {
       // Devolve o erro exato do MySQL diretamente no terminal do Node.js para diagnóstico rápido
-      console.error(" Erro crítico no MySQL ao atualizar:", err.message);
+      console.error(" Erro no MySQL ao atualizar:", err.message);
       return res.status(500).json({ erro: "Erro interno ao atualizar no banco.", detalhe: err.message });
     }
     

@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Layout Geral e Estrutura da Página
+   ========================================================================== */
+.detalhe-solucao-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Área de Conteúdo Centralizada e Limitada */
+.detalhe-solucao-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   Componentes e Elementos Internos
+   ========================================================================== */
+
+/* Botão Voltar (Link) */
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  color: #2d5c5e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-voltar:hover {
+  color: #1c3b3d;
+  transform: translateX(-4px);
+}
+
+/* Bloco do Artigo */
+.detalhe-solucao-article {
+  margin-top: 40px;
+}
+
+/* Título Principal */
+.detalhe-solucao-titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Faixa Divisória com a Cor do Tema (Verde Memora) */
+.detalhe-solucao-divisor {
+  width: 80px;
+  height: 4px;
+  background-color: #2d5c5e;
+  margin: 24px 0;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   Tratamento de Imagem (Adaptável ao tamanho real da foto)
+   ========================================================================== */
+
+/* Container da Imagem - Agora com altura totalmente flexível */
+.detalhe-solucao-image-container {
+  width: 100%;
+  height: auto;              /* Remove a altura travada para se adaptar à foto */
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #f8f9fa;
+}
+
+/* Tag da Imagem - Exibe 100% da foto sem nenhum corte ou zoom */
+.detalhe-solucao-image {
+  width: 100%;
+  height: auto;              /* Faz o enquadramento seguir a proporção real */
+  max-height: 650px;         /* Evita apenas que fotos verticais gigantes passem do limite da tela */
+  object-fit: contain;       /* Garante que toda a extensão da imagem seja aproveitada */
+  display: block;
+}
+
+/* ==========================================================================
+   Textos e Conteúdos
+   ========================================================================== */
+
+/* Descrição Curta / Resumo (Itálico) */
+.detalhe-solucao-descricao-curta {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5c6b73;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+/* Conteúdo Completo (Texto Longo vindo do Banco de Dados) */
+.detalhe-solucao-conteudo-completo {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333333;
+  white-space: pre-line;     /* Respeita quebras de linha dadas no painel admin */
+  text-align: justify;       /* Alinhamento justificado corporativo */
+}
+
+/* ==========================================================================
+   Responsividade para Dispositivos Móveis
+   ========================================================================== */
+@media (max-width: 768px) {
+  .detalhe-solucao-content {
+    padding: 32px 16px;
+  }
+
+  .detalhe-solucao-titulo {
+    font-size: 2rem;
+  }
+
+  .detalhe-solucao-descricao-curta {
+    font-size: 1.15rem;
+  }
+}

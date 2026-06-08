@@ -8,7 +8,8 @@ export default function Solucoes() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3001/servicos")
+    // Apontando para a porta correta (3000)
+    fetch("http://localhost:3000/servicos")
       .then((response) => response.json())
       .then((data) => {
         setServicos(data);
@@ -27,13 +28,11 @@ export default function Solucoes() {
         <div className="hero-content">
           <div className="hero-text-wrapper">
             <h1>Soluções</h1>
-
             <p>
               Soluções aliadas à tecnologia que possibilitam a transformação
               digital de empresas, promovem mudanças na experiência do cliente e
               melhoram a performance das equipes nos diversos níveis de decisão.
             </p>
-
             <p>
               Da integração entre os times à ferramentas de gerenciamento de
               processos, temos a solução sob medida para sua empresa,
@@ -41,7 +40,6 @@ export default function Solucoes() {
             </p>
           </div>
         </div>
-
         <div className="hero-image-overlay">
           <img
             src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1200"
@@ -53,8 +51,9 @@ export default function Solucoes() {
       {/* Grid de Cards */}
       <section className="solucoes-grid-section">
         <div className="solucoes-container">
-
           {loading && <p>Carregando serviços...</p>}
+
+          {!loading && servicos.length === 0 && <p>Nenhum serviço encontrado.</p>}
 
           {!loading &&
             servicos.map((item) => (
@@ -63,18 +62,13 @@ export default function Solucoes() {
                   <h3>{item.titulo}</h3>
                   <p>{item.descricao}</p>
                 </div>
-
                 <div className="solucao-card-footer">
-                  <Link
-                    to={`/solucao/${item.id}`}
-                    className="btn-ler-mais"
-                  >
+                  <Link to={`/solucao/${item.id}`} className="btn-ler-mais">
                     LER MAIS
                   </Link>
                 </div>
               </div>
             ))}
-
         </div>
       </section>
 

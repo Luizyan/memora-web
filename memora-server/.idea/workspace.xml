@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="809e0695-439d-4dd3-ac9e-ac794fce90b0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.css" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/components/home/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/components/home/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/pages/Solucoes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/pages/Solucoes.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="809e0695-439d-4dd3-ac9e-ac794fce90b0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

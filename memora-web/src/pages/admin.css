@@ -1,71 +1,215 @@
-.admin-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f2f6f7;
+/* ==========================================================================
+   LAYOUT E ESTRUTURA GLOBAL DO PAINEL
+   ========================================================================== */
+.admin-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
 }
 
-.admin-content {
-  width: 100%;
-  max-width: 600px;
-  background: #ffffff;
+/* Distribuição em colunas para telas grandes (Desktop) */
+@media (min-width: 1024px) {
+  .admin-page-container {
+    grid-template-columns: 1fr 2fr; /* Formulário menor na esquerda, Tabela maior na direita */
+  }
+}
+
+/* Painéis brancos (Cards de fundo) */
+.admin-card-panel {
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-top: 5px solid #2d5c5e;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  height: fit-content;
 }
 
-.admin-content h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #2d5c5e;
-  font-weight: 600;
+.admin-panel-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #163640; /* Azul escuro oficial da Memora */
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
-.admin-content form {
+/* ==========================================================================
+   FORMULÁRIO DE CADASTRO E EDIÇÃO
+   ========================================================================== */
+.admin-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
-.admin-content input,
-.admin-content textarea {
-  padding: 12px;
-  border: 1px solid #d0d7d9;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cccccc;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
   outline: none;
-  transition: 0.2s;
+  border-color: #2d5c5e; /* Sua cor tema */
 }
 
-.admin-content input:focus,
-.admin-content textarea:focus {
-  border-color: #2d5c5e;
-  box-shadow: 0 0 0 2px rgba(45, 92, 94, 0.15);
+.form-textarea {
+  resize: none;
 }
 
-.admin-content textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.admin-content button {
+/* Botões do Painel */
+.btn-admin-submit {
+  width: 100%;
+  background-color: #2d5c5e;
+  color: #ffffff;
+  font-weight: 700;
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #2d5c5e;
-  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-admin-submit:hover {
+  background-color: #1c3b3d;
+}
+
+.btn-admin-cancel {
+  width: 100%;
+  background-color: #e9ecef;
+  color: #495057;
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-admin-cancel:hover {
+  background-color: #dee2e6;
+}
+
+/* Alertas de Mensagem */
+.admin-alert-success {
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border: 1px solid #badbcc;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   TABELA DE MONITORAMENTO DO CRUD (READ, UPDATE, DELETE)
+   ========================================================================== */
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 14px 10px;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  padding: 16px 10px;
+  border-bottom: 1px solid #eff2f5;
+  font-size: 0.95rem;
+  color: #333333;
+  vertical-align: middle;
+}
+
+.admin-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Truncar textos muito longos na tabela para não quebrar a linha */
+.truncate-text {
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.max-width-desc {
+  max-width: 260px;
+}
+
+/* Botões de Ação na Tabela */
+.actions-cell {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-action-edit {
+  padding: 6px 14px;
+  background-color: #fff9db;
+  color: #f08c00;
+  border: 1px solid #ffe066;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  margin-right: 8px;
+  transition: all 0.2s ease;
 }
 
-.admin-content button:hover {
-  background: #244a4b;
+.btn-action-edit:hover {
+  background-color: #fff3bf;
 }
 
-.admin-content button:active {
-  transform: scale(0.98);
+.btn-action-delete {
+  padding: 6px 14px;
+  background-color: #fff5f5;
+  color: #e03131;
+  border: 1px solid #ffc9c9;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-action-delete:hover {
+  background-color: #ffe3e3;
 }

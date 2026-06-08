@@ -10,7 +10,6 @@ import { Clients } from './components/home/Clients';
 
 import PrivateRoute from "./components/PrivateRoute";
 
-
 import { VejaMais } from './PaginasRedirecionadas/HomeR/VejaMais';
 
 import ClientsNav from './pages/ClientsNav';
@@ -19,6 +18,7 @@ import Empresa    from './pages/Empresa';
 import Solucoes   from './pages/Solucoes';
 import Admin      from './pages/admin';
 import Login      from "./pages/login";
+import DetalheSolucao from "./pages/DetalheSolucao"; // <--- NOVA IMPORTAÇÃO DINÂMICA
 
 // IMPORTAÇÕES DOS BLOGS INDIVIDUAIS (BlogPages)
 import Blog1 from './PaginasRedirecionadas/BlogR/BlogPages/Blog1';
@@ -34,17 +34,6 @@ import Vaga2 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga2';
 import Vaga3 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga3';
 import Vaga4 from './PaginasRedirecionadas/HomeR/PagesVagas/vaga4'; 
 import Vaga5 from './PaginasRedirecionadas/HomeR/PagesVagas/Vaga5';
-
-// IMPORTAÇÕES DAS SOLUÇÕES (PagesSolucoes)
-import LerMais1 from "./PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais1";
-import LerMais2 from "./PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais2";
-import LerMais3 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais3';
-import LerMais4 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais4';
-import LerMais5 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais5';
-import LerMais6 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais6';
-import LerMais7 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais7';
-import LerMais8 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais8';
-import LerMais9 from './PaginasRedirecionadas/SolucoesR/PagesSolucoes/LerMais9';
 
 import './App.css';
 
@@ -69,7 +58,6 @@ function App() {
     <HashRouter>
       <div className="w-full min-h-screen overflow-x-hidden bg-white flex flex-col">
         <Header /> 
-        
         
         <main className="w-full flex-grow">
           <Routes>
@@ -98,16 +86,8 @@ function App() {
             <Route path="/vaga/4" element={<Vaga4 />} />
             <Route path="/vaga/5" element={<Vaga5 />} />
 
-            {/* ROTAS DAS SOLUÇÕES (LER MAIS) */}
-            <Route path="/solucao/1" element={<LerMais1 />} />
-            <Route path="/solucao/2" element={<LerMais2 />} /> 
-            <Route path="/solucao/3" element={<LerMais3 />} />
-            <Route path="/solucao/4" element={<LerMais4 />} />
-            <Route path="/solucao/5" element={<LerMais5 />} />
-            <Route path="/solucao/6" element={<LerMais6 />} />
-            <Route path="/solucao/7" element={<LerMais7 />} />
-            <Route path="/solucao/8" element={<LerMais8 />} />
-            <Route path="/solucao/9" element={<LerMais9 />} />
+            {/* ROTA ÚNICA E DINÂMICA DAS SOLUÇÕES (Substitui LerMais1 até LerMais9) */}
+            <Route path="/solucao/:id" element={<DetalheSolucao />} />
 
           </Routes>
         </main>

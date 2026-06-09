@@ -29,8 +29,9 @@ import './App.css';
 function Home() {
   return (
     <>
+    <Hero />
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 box-border">
-        <Hero />
+        
         <Stats />
         <Clients />
       </div>
@@ -44,7 +45,7 @@ function Home() {
 function App() {
   return (
     <HashRouter>
-      <div className="w-full min-h-screen overflow-x-hidden bg-white flex flex-col">
+      <div className="w-full min-h-screen overflow-x-hidden flex flex-col">
         <Header /> 
         
         <main className="w-full flex-grow">

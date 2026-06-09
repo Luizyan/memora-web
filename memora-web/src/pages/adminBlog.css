@@ -1,194 +1,228 @@
-/* Container Principal */
-.admin-container {
-  padding: 40px 20px;
-  max-width: 900px;
+/* ==========================================================================
+   CONTAINER E EMBALAGEM GLOBAL
+   ========================================================================== */
+.admin-global-wrapper {
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #333;
+  padding: 40px 24px 80px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ABAS DE NAVEGAÇÃO SUPERIOR (Sincronizadas com o padrão de Abas) */
+.admin-nav-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 35px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+.admin-nav-tabs a {
+  padding: 10px 20px;
+  background: #f1f5f9;
+  color: #475569;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.admin-nav-tabs a:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Aba Ativa - Destaque em Verde Esmeralda Oficial */
+.admin-nav-tabs a[style*="background: rgb(0, 168, 150)"], 
+.admin-nav-tabs a[style*="background: #00a896"] {
+  background: #006b6b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 107, 107, 0.2);
+}
+
+/* ==========================================================================
+   CONTEÚDO DO PAINEL DE CONTROLE
+   ========================================================================== */
+.admin-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .admin-container h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-top: 0;
+  margin-bottom: 25px;
   font-weight: 700;
-  color: #2d5c5e;
-  margin-bottom: 30px;
-  border-bottom: 2px solid #eef3f3;
-  padding-bottom: 10px;
+  border-left: 5px solid #006b6b;
+  padding-left: 12px;
 }
 
 .admin-container h2 {
   font-size: 1.5rem;
-  font-weight: 600;
-  color: #2d5c5e;
-  margin-top: 50px;
+  color: #1e293b;
+  margin-top: 45px;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
-/* Formulário */
+/* ==========================================================================
+   ESTILIZAÇÃO DO FORMULÁRIO (CAMPOS PREMIUM)
+   ========================================================================== */
 .admin-container form {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  border: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-/* Inputs de Texto e Textarea */
 .admin-container input[type="text"],
 .admin-container textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #ccc;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.2s ease-in-out;
-  background-color: #fafafa;
+  color: #334155;
+  background-color: #f8fafc;
   box-sizing: border-box;
+  font-family: inherit;
+  transition: all 0.2s ease;
 }
 
 .admin-container input[type="text"]:focus,
 .admin-container textarea:focus {
   outline: none;
-  border-color: #2d5c5e;
-  background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(45, 92, 94, 0.15);
+  border-color: #006b6b;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 107, 107, 0.12);
 }
 
-/* Seção de Categorias (Chips) */
+/* Container das Categorias */
 .admin-container label {
   font-weight: 600;
-  font-size: 0.95rem;
-  color: #444;
+  color: #475569;
   display: block;
   margin-bottom: 8px;
 }
 
+/* Pílulas de Categoria customizadas (Botões dinâmicos) */
 .admin-container button[type="button"] {
-  font-weight: 500;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  transition: all 0.2s ease !important;
 }
 
+/* Interação de Hover nas pílulas */
 .admin-container button[type="button"]:hover {
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(45, 92, 94, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Botão de Enviar (Publicar) */
+/* ==========================================================================
+   BOTÕES DE AÇÃO (SUBMIT E CANCELAR)
+   ========================================================================== */
 .admin-container button[type="submit"] {
-  width: 100%;
-  padding: 14px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  margin-top: 10px;
-  background-color: #2d5c5e !important;
+  background: #006b6b;
   color: #ffffff;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 107, 107, 0.15);
 }
 
 .admin-container button[type="submit"]:hover {
-  background-color: #1e3f40 !important;
+  background: #005252;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 107, 107, 0.25);
 }
 
-.admin-container button[type="submit"]:active {
-  transform: scale(0.98);
-}
-
-/* Container da Tabela para dar Scroll no Mobile */
+/* ==========================================================================
+   TABELA DE GERENCIAMENTO DE POSTS
+   ========================================================================== */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-top: 15px;
-  border-radius: 12px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
 }
 
-/* Tabela de Gerenciamento */
-.admin-container table {
+table {
   width: 100%;
-  background: #fff;
   border-collapse: collapse;
+  text-align: left;
 }
 
-.admin-container th {
-  background-color: #f4f7f7;
-  color: #2d5c5e;
+th {
+  background: #f8fafc;
+  color: #475569;
+  padding: 14px 16px;
   font-weight: 600;
-  padding: 14px 20px;
   font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
 }
 
-.admin-container td {
-  padding: 16px 20px;
+td {
+  padding: 14px 16px;
+  color: #334155;
   font-size: 0.95rem;
-  color: #444;
-  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-/* Container de ações (Editar e Deletar juntos) */
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Célula de Ações */
 .actions-cell {
   display: flex;
   gap: 8px;
+  justify-content: flex-start;
 }
 
-/* Botões da Tabela */
-.admin-container table button {
-  border-radius: 6px;
-  font-weight: 500;
+/* Botões específicos da Tabela */
+.btn-editar, .btn-deletar {
+  padding: 6px 14px;
   font-size: 0.85rem;
-  padding: 6px 12px;
-  cursor: pointer;
+  font-weight: 600;
   border: none;
-  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Botão Editar */
 .btn-editar {
-  background-color: #ffc107;
-  color: #000;
+  background-color: #e2f2f2;
+  color: #006b6b;
 }
+
 .btn-editar:hover {
-  background-color: #e0a800 !important;
+  background-color: #006b6b;
+  color: #ffffff;
 }
 
-/* Botão Excluir */
 .btn-deletar {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #fee2e2;
+  color: #ef4444;
 }
+
 .btn-deletar:hover {
-  background-color: #bd2130 !important;
-}
-
-
-
-@media (max-width: 768px) {
-  .admin-container {
-    padding: 20px 15px;
-  }
-  
-  .admin-container h1 {
-    font-size: 1.6rem;
-  }
-
-  .admin-container form {
-    padding: 20px;
-  }
-
-  /* Faz a área dos chips quebrar linha se faltar espaço no celular */
-  .admin-container div[style*="display: flex"] {
-    flex-wrap: wrap;
-    gap: 8px !important;
-  }
-  
-  .admin-container button[type="button"] {
-    padding: 6px 12px !important;
-    font-size: 0.8rem;
-  }
+  background-color: #ef4444;
+  color: #ffffff;
 }

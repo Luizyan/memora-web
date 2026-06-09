@@ -1,0 +1,119 @@
+/* ==========================================================================
+   STATS SECTION (COMPLETO & ATUALIZADO)
+   ========================================================================== */
+
+.stats {
+  width: 100%;
+  max-width: 1200px; /* Limita a largura para alinhar com o Header e o Hero */
+  margin: 0 auto;    /* Centraliza a seção inteira na tela */
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha o título à esquerda acompanhando o grid */
+  box-sizing: border-box;
+}
+
+.stats-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #004d4d; /* Um tom ligeiramente mais escuro para o h2 contrastar bem */
+  text-align: left;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+.stats-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas perfeitas lado a lado */
+  gap: 24px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid #006b6b; /* Detalhe na lateral esquerda com o verde tema */
+  border-radius: 12px;
+  padding: 32px 20px;
+  text-align: left; /* Alinha os textos internos do card à esquerda */
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha o conteúdo interno na esquerda */
+  justify-content: center;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Efeito ao passar o mouse */
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 107, 107, 0.12);
+}
+
+/* NÚMERO DA ESTATÍSTICA VERDE ESMERALDA */
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #006b6b !important; /* O !important garante que nenhuma outra regra antiga roube essa cor */
+  margin-bottom: 8px;
+}
+
+/* TEXTO DESCRITIVO */
+.stat-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #006b6b !important; 
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE: TABLET
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr); /* Divide em uma grade de 2x2 */
+  }
+
+  .stats-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE: MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .stats {
+    padding: 60px 16px;
+    align-items: center; /* Centraliza tudo no celular para ficar mais harmônico */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* 1 card por linha no celular */
+    gap: 16px;
+  }
+
+  .stats-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    padding: 24px 16px;
+    align-items: center;
+    text-align: center; /* Centraliza textos do card no mobile */
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+  }
+}

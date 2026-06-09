@@ -130,7 +130,6 @@ export function Header() {
               <PhoneIcon />
             </a>
           </div>
-          <button className="admin-btn">Área do Administrador</button>
         </div>
       </div>
 

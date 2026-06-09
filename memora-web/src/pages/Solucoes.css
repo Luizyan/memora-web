@@ -12,8 +12,8 @@
    ESTILO DO HERO (RESPONSIVO E CORRIGIDO)
    ========================================== */
 .solucoes-hero {
-  display: block;            /* Mudado de flex para block no mobile para garantir fluxo natural */
-  background-color: #163640; /* Fundo escuro oficial da Memora */
+  display: block;     
+  background-color: #2d5c5e; 
   width: 100%;
   box-sizing: border-box;
 }

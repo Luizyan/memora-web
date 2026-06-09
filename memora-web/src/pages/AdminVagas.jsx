@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // <-- IMPORTANTE: adicionado para corrigir o fluxo de navegação entre os painéis
+import { Link } from 'react-router-dom'; 
 import './AdminVagas.css';
 
 export function AdminVagas() {
   const [vagas, setVagas] = useState([]);
-  const [editandoId, setEditandoId] = useState(null); // Estado para controlar se estamos editando
+  const [editandoId, setEditandoId] = useState(null); 
   const [novoItem, setNovoItem] = useState({
     titulo: '',
     categoria: '',
@@ -14,7 +14,6 @@ export function AdminVagas() {
     link_url: ''
   });
 
-  // Função para buscar as vagas atualizadas do backend
   const carregarVagas = () => {
     fetch('http://localhost:3000/vagas')
       .then((res) => {
@@ -27,17 +26,14 @@ export function AdminVagas() {
       .catch((err) => console.error('Erro ao buscar vagas:', err));
   };
 
-  // Carrega as vagas assim que a tela abre
   useEffect(() => {
     carregarVagas();
   }, []);
 
-  // Atualiza o estado conforme o usuário digita nos inputs
   const handleChange = (e) => {
     setNovoItem({ ...novoItem, [e.target.name]: e.target.value });
   };
 
-  // Prepara o formulário com os dados da vaga selecionada para edição
   const handleIniciarEdicao = (vaga) => {
     setEditandoId(vaga.id);
     setNovoItem({
@@ -48,11 +44,9 @@ export function AdminVagas() {
       data_criacao: vaga.data_criacao,
       link_url: vaga.link_url
     });
-    // Rola a tela suavemente para o topo onde está o formulário
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Cancela o modo de edição e limpa os campos
   const handleCancelarEdicao = () => {
     setEditandoId(null);
     setNovoItem({
@@ -65,11 +59,9 @@ export function AdminVagas() {
     });
   };
 
-  // Envia os dados para salvar (CREATE ou UPDATE) no banco de dados
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Se o usuário não digitar uma data, gera automaticamente com a data de hoje (DD | MM | AAAA)
     let dataFinal = novoItem.data_criacao;
     if (!dataFinal.trim()) {
       const hoje = new Date();
@@ -84,7 +76,6 @@ export function AdminVagas() {
       data_criacao: dataFinal
     };
 
-    // Define dinamicamente a URL e o método com base no estado de edição
     const url = editandoId ? `http://localhost:3000/vagas/${editandoId}` : 'http://localhost:3000/vagas';
     const metodo = editandoId ? 'PUT' : 'POST';
 
@@ -101,8 +92,8 @@ export function AdminVagas() {
       })
       .then(() => {
         alert(editandoId ? 'Vaga atualizada com sucesso!' : 'Vaga cadastrada com sucesso!');
-        handleCancelarEdicao(); // Limpa o formulário e sai do modo de edição
-        carregarVagas(); // Atualiza a tabela imediatamente
+        handleCancelarEdicao(); 
+        carregarVagas(); 
       })
       .catch((err) => {
         console.error(err);
@@ -110,7 +101,6 @@ export function AdminVagas() {
       });
   };
 
-  // Remove uma vaga do banco de dados
   const handleDeletar = (id) => {
     if (window.confirm('Tem certeza que deseja remover esta vaga permanentemente?')) {
       fetch(`http://localhost:3000/vagas/${id}`, { method: 'DELETE' })
@@ -119,8 +109,8 @@ export function AdminVagas() {
             throw new Error('Não foi possível deletar a vaga.');
           }
           alert('Vaga removida com sucesso!');
-          if (editandoId === id) handleCancelarEdicao(); // Se deletar a vaga que estava editando, limpa o form
-          carregarVagas(); // Atualiza a tabela
+          if (editandoId === id) handleCancelarEdicao(); 
+          carregarVagas(); 
         })
         .catch((err) => {
           console.error(err);
@@ -132,7 +122,6 @@ export function AdminVagas() {
   return (
     <div className="admin-global-wrapper" style={{ padding: "20px" }}>
       
-      {/* ABAS DE NAVEGAÇÃO INTEGRADA DO SISTEMA GERAL */}
       <nav className="admin-nav-tabs" style={{ display: "flex", gap: "15px", marginBottom: "30px", borderBottom: "1px solid #ddd", paddingBottom: "10px" }}>
         <Link to="/admin" style={{ padding: "10px 20px", background: "#f1f5f9", color: "#334155", textDecoration: "none", borderRadius: "5px", fontWeight: "500" }}>
           💼 Gerenciar Soluções
@@ -147,12 +136,11 @@ export function AdminVagas() {
 
       <div className="admin-vagas-container">
         <header className="admin-vagas-header">
-          <h2>Painel de Vagas (Empregare)</h2>
-          <p>Gerencie as oportunidades exibidas no carrossel da Home</p>
+          <h2>Painel Geral de Vagas</h2>
+          <p>Gerencie as oportunidades e links externos de qualquer plataforma de recrutamento</p>
         </header>
         
         <div className="admin-vagas-content">
-          {/* Formulário de Cadastro / Edição */}
           <section className="form-section">
             <h3>{editandoId ? '📝 Editar Vaga' : '✨ Nova Vaga'}</h3>
             <form onSubmit={handleSubmit} className="admin-vagas-form">
@@ -216,11 +204,11 @@ export function AdminVagas() {
               </div>
 
               <div className="input-group">
-                <label>Link de Inscrição (Empregare)</label>
+                <label>Link de Inscrição (Qualquer Plataforma)</label>
                 <input 
                   type="url" 
                   name="link_url" 
-                  placeholder="https://empregare.com/vaga/..." 
+                  placeholder="https://exemplo.com/vaga-ou-anuncio" 
                   value={novoItem.link_url} 
                   onChange={handleChange} 
                   required 
@@ -244,7 +232,6 @@ export function AdminVagas() {
             </form>
           </section>
 
-          {/* Tabela de Visualização e Controle */}
           <section className="table-section">
             <h3>Vagas Ativas ({vagas.length})</h3>
             <div className="table-wrapper">
@@ -275,7 +262,7 @@ export function AdminVagas() {
                         </td>
                         <td data-label="Link Externo">
                           <a href={vaga.link_url} target="_blank" rel="noopener noreferrer" className="link-view">
-                            Acessar Empregare
+                            Visualizar Oportunidade
                           </a>
                         </td>
                         <td data-label="Ações">

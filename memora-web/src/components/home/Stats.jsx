@@ -1,3 +1,5 @@
+import "./Stats.css"; // Garante que está puxando o arquivo local correto
+
 export function Stats() {
   const resultados = [
     { cifra: "+500", desc: "colaboradores" },
@@ -8,14 +10,14 @@ export function Stats() {
 
   return (
     <section className="stats">
-      <div className="stats-info">
-        {/* Adicionado o fontWeight: 800 ou 'bold' para engrossar a fonte */}
-        <h2 style={{ fontWeight: 800 }}>Nossos resultados</h2>
-      </div>
+      <h2 className="stats-title">Nossos Resultados</h2>
+
       <div className="stats-grid">
         {resultados.map((item, index) => (
           <div key={index} className="stat-card">
-            <strong>{item.cifra}</strong> {item.desc}
+            {/* O segredo está nessas duas classes abaixo que ligam com o CSS */}
+            <span className="stat-number">{item.cifra}</span>
+            <span className="stat-label">{item.desc}</span>
           </div>
         ))}
       </div>

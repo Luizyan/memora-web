@@ -1,26 +1,26 @@
-import { Link } from 'react-router-dom'; // Importe o Link
+import { Link } from 'react-router-dom';
 import heroImg from '../../assets/genteComemorando.jpg';
+import './Hero.css'; // <--- O import vital para puxar o arquivo exclusivo
 
 export function Hero() {
   return (
-    <section className="hero" style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
-      <div className="hero-content">
-        <h1>Transformamos processos em <strong>resultados memoráveis</strong></h1>
-        <p>Conectando tecnologia, metodologia e pessoas para transformar governos e organizações.</p>
+    <div className="hero-home-bg"> {/* Aplica o fundo de ponta a ponta */}
+      <section className="hero-home"> {/* Segura o conteúdo em 1200px */}
         
-        {/* Transformado em Link apontando para a nova rota */}
-        <Link to="/vejamais" className="cta-btn" style={{ textDecoration: 'none' }}>
-          Veja mais
-        </Link>
-      </div>
-      
-      <div className="hero-image">
-        <img 
-          src={heroImg} 
-          alt="Gente Comemorando" 
-          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} 
-        />
-      </div>
-    </section>
+        <div className="hero-home-content">
+          <h1>Transformamos processos em <strong>resultados memoráveis</strong></h1>
+          <p>Conectando tecnologia, metodologia e pessoas para transformar governos e organizações.</p>
+          
+          <Link to="/vejamais" className="hero-home-cta">
+            Veja mais
+          </Link>
+        </div>
+        
+        <div className="hero-home-image">
+          <img src={heroImg} alt="Gente Comemorando" />
+        </div>
+
+      </section>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // <-- IMPORTANTE: adicionado para corrigir o fluxo de navegação entre os painéis
+import { Link } from "react-router-dom"; 
 import "./adminBlog.css"; 
 
 export default function AdminBlog() {
@@ -10,19 +10,19 @@ export default function AdminBlog() {
   const [categories, setCategories] = useState([]); 
   const [posts, setPosts] = useState([]);
   
-  // ESTADO PARA SABER SE ESTAMOS EDITANDO UM POST EXISTENTE
+  // Controle do estado de Edição (null por padrão)
   const [editandoId, setEditandoId] = useState(null);
 
   const CATEGORIAS_DISPONIVEIS = ["PROCESSOS", "TECNOLOGIA", "GESTÃO", "INOVAÇÃO", "DADOS", "ESTRATÉGIA"];
 
-  const carregarPosts = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/blog");
-      const data = await response.json();
-      setPosts(data);
-    } catch (error) {
-      console.error("Erro ao buscar posts:", error);
-    }
+  const carregarPosts = () => {
+    fetch("http://localhost:3000/blog")
+      .then((res) => {
+        if (!res.ok) throw new Error("Erro ao buscar dados do servidor");
+        return res.json();
+      })
+      .then((data) => setPosts(data))
+      .catch((err) => console.error("Erro ao listar:", err));
   };
 
   useEffect(() => {
@@ -37,20 +37,21 @@ export default function AdminBlog() {
     }
   };
 
-  // FUNÇÃO ATIVADA AO CLICAR EM EDITAR NA TABELA
   const handleIniciarEdicao = (post) => {
-    setEditandoId(post.id);
+    // Captura o ID de forma limpa
+    const idDoPost = post.id !== undefined ? post.id : post._id;
+    
+    setEditandoId(idDoPost);
     setTitulo(post.titulo);
     setExcerpt(post.excerpt);
     setConteudo(post.conteudo);
     setImagem(post.imagem);
     setCategories(post.categories || []);
     
-    // Rola a página suavemente de volta para o topo (onde está o formulário)
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!titulo || !excerpt || !conteudo || !imagem || categories.length === 0) {
@@ -63,59 +64,70 @@ export default function AdminBlog() {
     const dataFormatada = `${hoje.getDate()} ${meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
 
     const dadosPost = {
-      titulo,
-      excerpt,
-      conteudo,
-      imagem,
-      categories, 
-      data_criacao: dataFormatada
+      titulo: titulo.trim(),
+      excerpt: excerpt.trim(),
+      conteudo: conteudo.trim(),
+      imagem: imagem.trim(),
+      categories
     };
 
-    try {
-      const url = editandoId ? `http://localhost:3000/blog/${editandoId}` : "http://localhost:3000/blog";
-      const metodo = editandoId ? "PUT" : "POST"; 
+    // Monta a rota dinamicamente baseada no modelo funcional do seu painel "Admin"
+    const url = editandoId 
+      ? `http://localhost:3000/blog/${editandoId}` 
+      : "http://localhost:3000/blog";
+    
+    const metodo = editandoId ? "PUT" : "POST";
 
-      const response = await fetch(url, {
-        method: metodo,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosPost),
-      });
+    // Só atribui data se for um post totalmente novo
+    if (!editandoId) {
+      dadosPost.data_criacao = dataFormatada;
+    }
 
-      if (response.ok) {
-        alert(editandoId ? "Post updated com sucesso!" : "Post do blog publicado com sucesso!");
-        
-        // Limpa tudo e reseta o estado de edição
-        setTitulo("");
-        setExcerpt("");
-        setConteudo("");
-        setImagem("");
-        setCategories([]);
-        setEditandoId(null);
+    fetch(url, {
+      method: metodo,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dadosPost),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Erro na comunicação com o banco MySQL");
+        return res.json();
+      })
+      .then(() => {
+        alert(editandoId ? "Post atualizado com sucesso!" : "Post do blog publicado com sucesso!");
+        limparFormulario();
         carregarPosts();
-      }
-    } catch (error) {
-      console.error("Erro ao salvar post:", error);
+      })
+      .catch((err) => {
+        console.error("Erro ao salvar:", err);
+        alert("Ocorreu um erro ao salvar os dados. Verifique seu console backend.");
+      });
+  };
+
+  const handleDeletar = (id) => {
+    if (window.confirm("Deseja mesmo excluir este post permanentemente?")) {
+      fetch(`http://localhost:3000/blog/${id}`, { method: "DELETE" })
+        .then((res) => {
+          if (!res.ok) throw new Error("Erro ao deletar");
+          alert("Post deletado com sucesso!");
+          carregarPosts();
+          if (editandoId === id) limparFormulario();
+        })
+        .catch((err) => console.error("Erro ao deletar:", err));
     }
   };
 
-  const handleDeletar = async (id) => {
-    if (window.confirm("Deseja mesmo excluir este post?")) {
-      try {
-        const response = await fetch(`http://localhost:3000/blog/${id}`, { method: "DELETE" });
-        if (response.ok) {
-          alert("Post deletado!");
-          carregarPosts();
-        }
-      } catch (error) {
-        console.error("Erro ao deletar:", error);
-      }
-    }
+  const limparFormulario = () => {
+    setTitulo("");
+    setExcerpt("");
+    setConteudo("");
+    setImagem("");
+    setCategories([]);
+    setEditandoId(null);
   };
 
   return (
     <div className="admin-global-wrapper" style={{ padding: "20px" }}>
       
-      {/* ABAS DE NAVEGAÇÃO INTEGRADA DO SISTEMA GERAL */}
       <nav className="admin-nav-tabs" style={{ display: "flex", gap: "15px", marginBottom: "30px", borderBottom: "1px solid #ddd", paddingBottom: "10px" }}>
         <Link to="/admin" style={{ padding: "10px 20px", background: "#f1f5f9", color: "#334155", textDecoration: "none", borderRadius: "5px", fontWeight: "500" }}>
           💼 Gerenciar Soluções
@@ -166,10 +178,7 @@ export default function AdminBlog() {
           </button>
           
           {editandoId && (
-            <button type="button" onClick={() => {
-              setEditandoId(null);
-              setTitulo(""); setExcerpt(""); setConteudo(""); setImagem(""); setCategories([]);
-            }} style={{ backgroundColor: "#ccc", color: "#000", padding: "10px", border: "none", borderRadius: "8px", cursor: "pointer" }}>
+            <button type="button" onClick={limparFormulario} style={{ backgroundColor: "#ccc", color: "#000", padding: "10px", border: "none", borderRadius: "8px", cursor: "pointer" }}>
               Cancelar Edição
             </button>
           )}
@@ -186,17 +195,20 @@ export default function AdminBlog() {
               </tr>
             </thead>
             <tbody>
-              {posts.map(post => (
-                <tr key={post.id} style={{ borderBottom: "1px solid #eee" }}>
-                  <td style={{ padding: "10px" }}>{post.titulo}</td>
-                  <td>
-                    <div className="actions-cell">
-                      <button onClick={() => handleIniciarEdicao(post)} className="btn-editar">Editar</button>
-                      <button onClick={() => handleDeletar(post.id)} className="btn-deletar">Excluir</button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {posts.map(post => {
+                const idAtual = post.id !== undefined ? post.id : post._id;
+                return (
+                  <tr key={idAtual} style={{ borderBottom: "1px solid #eee" }}>
+                    <td style={{ padding: "10px" }}>{post.titulo}</td>
+                    <td>
+                      <div className="actions-cell">
+                        <button onClick={() => handleIniciarEdicao(post)} className="btn-editar">Editar</button>
+                        <button onClick={() => handleDeletar(idAtual)} className="btn-deletar">Excluir</button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

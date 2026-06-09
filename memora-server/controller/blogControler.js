@@ -1,4 +1,4 @@
-const db = require('../config/db'); // Apontando para o seu arquivo de conexão
+const db = require('../config/db'); // Conexão com o seu banco MySQL
 
 // Listar todos os posts do blog
 exports.listarPosts = (req, res) => {
@@ -15,7 +15,7 @@ exports.listarPosts = (req, res) => {
     });
 };
 
-// Buscar um único post por ID (para a página interna dinâmica)
+// Buscar um único post por ID
 exports.buscarPostPorId = (req, res) => {
     const { id } = req.params;
     const query = 'SELECT * FROM blog WHERE id = ?';
@@ -29,11 +29,11 @@ exports.buscarPostPorId = (req, res) => {
     });
 };
 
-// Criar um novo post (vindo do Admin)
+// Criar um novo post
 exports.criarPost = (req, res) => {
     const { titulo, excerpt, conteudo, imagem, categories, data_criacao } = req.body;
     
-    // Converte o array do React ["PROCESSOS", "TECNOLOGIA"] em string para o MySQL
+    // Converte o array do React em string para o MySQL
     const categoriasString = Array.isArray(categories) ? categories.join(',') : categories;
 
     const query = 'INSERT INTO blog (titulo, excerpt, conteudo, imagem, categorias, data_criacao, comentarios) VALUES (?, ?, ?, ?, ?, ?, 0)';
@@ -43,7 +43,32 @@ exports.criarPost = (req, res) => {
     });
 };
 
-// Deletar um post (vindo do Admin)
+// 🚀 ATUALIZAR um post existente (Nova Função)
+exports.atualizarPost = (req, res) => {
+    const { id } = req.params;
+    const { titulo, excerpt, conteudo, imagem, categories } = req.body;
+    
+    // Converte o array ["TECNOLOGIA", "DADOS"] em string "TECNOLOGIA,DADOS" para o banco
+    const categoriasString = Array.isArray(categories) ? categories.join(',') : categories;
+
+    const query = `
+        UPDATE blog 
+        SET titulo = ?, excerpt = ?, conteudo = ?, imagem = ?, categorias = ? 
+        WHERE id = ?
+    `;
+
+    db.query(query, [titulo, excerpt, conteudo, imagem, categoriasString, id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Post não encontrado.' });
+        }
+
+        res.json({ message: 'Post atualizado com sucesso!' });
+    });
+};
+
+// Deletar um post
 exports.deletarPost = (req, res) => {
     const { id } = req.params;
     const query = 'DELETE FROM blog WHERE id = ?';

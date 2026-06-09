@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="809e0695-439d-4dd3-ac9e-ac794fce90b0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Routes/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/blogControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/blogControler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/components/home/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/components/home/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/pages/AdminVagas.css" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/pages/AdminVagas.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/pages/adminBlog.css" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/pages/adminBlog.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../memora-web/src/pages/adminBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/pages/adminBlog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.css" beforeDir="false" afterPath="$PROJECT_DIR$/../memora-web/src/components/home/Clients.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
